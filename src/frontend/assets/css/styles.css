@@ -4069,7 +4069,7 @@ body {
 }
 
 .faq-answer p {
-    padding: 0 var(--space-6) var(--space-6) var(--space-6);
+    padding: var(--space-4) var(--space-6) var(--space-6) var(--space-6);
     margin: 0;
     font-size: var(--text-sm);
     line-height: 1.6;
