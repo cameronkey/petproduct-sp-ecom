@@ -1,0 +1,43 @@
+services:
+  # Backend API Service
+  - type: web
+    name: reciperush-backend
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # Frontend Static Site
+  - type: web
+    name: reciperush-frontend
+    env: static
+    plan: starter
+    buildCommand: ./build-production.sh
+    startCommand: echo "Static site - no build needed"
+    envVars:
+      - key: NODE_ENV
+        value: production
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    autoDeploy: true

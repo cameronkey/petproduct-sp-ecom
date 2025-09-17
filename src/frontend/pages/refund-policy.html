@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="RecipeRush Refund Policy. Learn about our refund terms and conditions for our premium recipe collection service.">
+    <meta name="keywords" content="refund policy, money back guarantee, recipe service refund, customer satisfaction">
+    <meta name="author" content="RecipeRush">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Refund Policy - RecipeRush">
+    <meta property="og:description" content="Learn about our refund terms and conditions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://reciperush.co.uk/refund-policy.html">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop">
+    <meta property="og:site_name" content="RecipeRush">
+    <link rel="canonical" href="https://reciperush.co.uk/refund-policy.html">
+    <link rel="icon" href="../assets/images/refiperush-favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/images/refiperush-favicon.png">
+    <link rel="manifest" href="../static/manifest.webmanifest">
+
+    <title>Refund Policy - RecipeRush | Money Back Guarantee</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RERVSD8Z93"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RERVSD8Z93');
+    </script>
+    
+    <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body data-page-scripts="">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <!-- Desktop Navigation - Left Side -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <!-- Brand - Center -->
+            <div class="nav-brand">
+                <a href="index.html" class="nav-brand-link" aria-label="Company Name home">Company Name</a>
+            </div>
+            
+            <!-- Actions - Right Side -->
+            <div class="nav-actions">
+                <button class="btn-user" onclick="openUserMenu()" aria-label="User menu">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn-cart" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav-container">
+                <button class="btn-user-mobile" onclick="openUserMenu()" aria-label="User menu">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn-cart-mobile-header" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
+                <button class="burger-menu" onclick="toggleMobileMenu()" aria-controls="mobile-menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Overlay -->
+            <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h2>Menu</h2>
+                    <button class="close-mobile-menu" onclick="closeMobileMenu()" aria-label="Close menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <ul class="mobile-nav-menu">
+                    <li><a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a></li>
+                </ul>
+                <div class="mobile-social-links">
+                    <a href="https://www.youtube.com/@Recipe_Rush" target="_blank" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@recipe_rush0?lang=en-GB" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.instagram.com/recipe__rush/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="legal-content">
+        <div class="container">
+            <div class="legal-header">
+                <h1>Refund Policy</h1>
+                <p class="legal-date">Last updated: January 2025</p>
+            </div>
+            
+            <div class="legal-body">
+                <section class="legal-section">
+                    <p>Since our products are digital products, it is deemed "used" after download or opening, and all purchases made on RecipeRush are non-refundable or exchangeable. As the products offered here are not physical goods, we have a strict no-refund policy. If you have any questions contact us at reciperush01@gmail.com.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RecipeRush</h3>
+                    <p>Your gateway to culinary excellence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="src/frontend/pages/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="src/frontend/pages/terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="src/frontend/pages/refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: reciperush01@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@Recipe_Rush" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@recipe_rush0?lang=en-GB" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/recipe__rush/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeRush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be populated here -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: <span id="cartTotal">£0.00</span></h3>
+            </div>
+            <div class="cart-actions">
+                <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
+                <button class="btn-primary" onclick="showCheckoutForm()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/app-config.js?v=1.0.1"></script>
+    <script src="../assets/js/config-loader.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/cart-manager.js"></script>
+    <script src="../assets/js/quick-add-cart.js"></script>
+</body>
+</html>

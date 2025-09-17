@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+
+
+# Disallow payment result pages (noindex directive is set via meta robots tags in the HTML files)
+# Allow crawling so meta robots noindex in the HTML can be honored
+
+# Disallow admin and system files
+Disallow: /tests/
+Disallow: /coverage/
+Disallow: /env.example
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Sitemap location
+Sitemap: https://reciperush.co.uk/sitemap.xml
+
+

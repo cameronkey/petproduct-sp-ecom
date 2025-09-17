@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Transform your kitchen with 80 professional recipes from RecipeRush. Master chef-quality dishes guaranteed to impress. Get instant access to our premium recipe collection.">
+    <meta name="keywords" content="recipes, cooking, chef recipes, professional cooking, kitchen, culinary, food, cooking guide, recipe collection, master chef">
+    <meta name="author" content="RecipeRush">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="RecipeRush - Premium Recipe Collection">
+    <meta property="og:description" content="Transform your kitchen with 80 professional recipes from RecipeRush. Master chef-quality dishes guaranteed to impress.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://reciperush.co.uk/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop">
+    <meta property="og:site_name" content="RecipeRush">
+    <link rel="canonical" href="https://reciperush.co.uk/">
+    <link rel="icon" href="../assets/images/refiperush-favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/images/refiperush-favicon.png">
+    <link rel="manifest" href="../static/manifest.webmanifest">
+    <title>RecipeRush - Premium Recipe Collection</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RERVSD8Z93"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RERVSD8Z93');
+    </script>
+    
+    <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Schema.org structured data for rich snippets -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "RecipeRush",
+        "url": "https://reciperush.co.uk",
+        "logo": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop",
+        "description": "Premium recipe collection with 80 professional recipes guaranteed to make you cook like a master chef",
+        "sameAs": [
+            "https://www.youtube.com/@Recipe_Rush",
+            "https://www.tiktok.com/@recipe_rush0",
+            "https://www.instagram.com/recipe__rush/"
+        ]
+    }
+    </script>
+</head>
+<body data-page-scripts="">
+    <!-- Animated Banner -->
+    <div class="animated-banner">
+        <div class="banner-text" id="bannerText">SALES END TODAY</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <!-- Desktop Navigation - Left Side -->
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">Home</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <!-- Brand - Center -->
+            <div class="nav-brand">
+                <a href="/" class="nav-brand-link" aria-label="Company Name home" aria-current="page">Company Name</a>
+            </div>
+            
+            <!-- Actions - Right Side -->
+            <div class="nav-actions">
+                <button class="btn-user" onclick="openUserMenu()" aria-label="User menu">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn-cart" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav-container">
+                <button class="btn-user-mobile" onclick="openUserMenu()" aria-label="User menu">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn-cart-mobile-header" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
+                <button class="burger-menu" onclick="toggleMobileMenu()" aria-controls="mobile-menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Overlay -->
+            <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h2>Menu</h2>
+                    <button class="close-mobile-menu" onclick="closeMobileMenu()" aria-label="Close menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <ul class="mobile-nav-menu">
+                    <li><a href="/" class="mobile-nav-link active" onclick="closeMobileMenu()">Home</a></li>
+                    <li><a href="/contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a></li>
+                </ul>
+                <div class="mobile-social-links">
+                    <a href="https://www.youtube.com/@Recipe_Rush" target="_blank" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@recipe_rush0?lang=en-GB" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.instagram.com/recipe__rush/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Featured Product -->
+    <section id="featured" class="featured" data-lazy-load>
+        <div class="container">
+            <div class="pdp-container">
+                <!-- Left Section: Product Image -->
+                <div class="pdp-image-section">
+                    <div class="main-product-image">
+                        <img src="../assets/images/recipe-rush-pdp-image-one.jpg" alt="CENTY Liposomal NAD+ Bottle" id="mainImage" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Right Section: Product Details -->
+                <div class="pdp-details-section">
+                    <div class="eco-badge">Made with Eco friendly products</div>
+                    <h1 class="pdp-title">Centy – Liposomal NAD</h1>
+                    
+                    <div class="rating-summary">
+                        <div class="stars">★★★★☆</div>
+                        <span class="review-count">(12,292 Reviews)</span>
+                    </div>
+
+                    <div class="bundle-section">
+                        <h3 class="bundle-title">Bundle & Save</h3>
+                        <div class="bundle-options">
+                            <label class="bundle-option selected">
+                                <input type="radio" name="bundle" value="1" data-price="34.99" data-original="69.98" checked>
+                                <span class="tick">✓</span>
+                                <div class="bundle-content">
+                                    <span class="bundle-text">Buy 1</span>
+                                    <div class="bundle-prices">
+                                        <span class="bundle-price">£34.99</span>
+                                        <span class="bundle-original">£69.98</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="bundle-option">
+                                <input type="radio" name="bundle" value="2" data-price="34.99" data-original="139.96">
+                                <span class="tick">✓</span>
+                                <div class="bundle-content">
+                                    <span class="bundle-text">Buy 1 Get 1 Free</span>
+                                    <div class="bundle-prices">
+                                        <span class="bundle-price">£34.99</span>
+                                        <span class="bundle-original">£139.96</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="bundle-option popular">
+                                <input type="radio" name="bundle" value="3" data-price="49.99" data-original="209.94">
+                                <span class="tick">✓</span>
+                                <div class="bundle-content">
+                                    <span class="bundle-text">Buy 3</span>
+                                    <div class="bundle-prices">
+                                        <span class="bundle-price">£49.99</span>
+                                        <span class="bundle-original">£209.94</span>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="bundle-option best">
+                                <input type="radio" name="bundle" value="5" data-price="74.99" data-original="279.92">
+                                <span class="tick">✓</span>
+                                <div class="bundle-content">
+                                    <span class="bundle-text">Buy 5</span>
+                                    <div class="bundle-prices">
+                                        <span class="bundle-price">£74.99</span>
+                                        <span class="bundle-original">£279.92</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="benefits-section">
+                        <div class="benefit-item">
+                            <i class="fas fa-book"></i>
+                            <span>E-Book</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Free Shipping</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Serving Spoon</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Measuring Cup</span>
+                        </div>
+                    </div>
+
+                    <div class="pdp-actions">
+                        <button class="btn-add-cart" onclick="addToCart()">
+                            ADD TO CART
+                        </button>
+                    </div>
+
+                    <!-- Testimonials Section -->
+                    <div class="testimonials-section">
+                        <div class="testimonials-container">
+                            <div class="testimonials-slider" id="testimonialsSlider">
+                                <div class="testimonial-item active">
+                                    <div class="testimonial-content">
+                                        <div class="testimonial-image">
+                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Nicole" loading="lazy">
+                                        </div>
+                                        <div class="testimonial-text">
+                                            <p class="testimonial-comment">"I've tested a few NAD+ products. It's amazing, skin feels good, no irritation. really recommend"</p>
+                                            <div class="testimonial-divider"></div>
+                                            <p class="testimonial-name">Nicole</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-item">
+                                    <div class="testimonial-content">
+                                        <div class="testimonial-image">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="James" loading="lazy">
+                                        </div>
+                                        <div class="testimonial-text">
+                                            <p class="testimonial-comment">"I've tested a few NAD+ products. It's amazing, skin feels good, no irritation. really recommend"</p>
+                                            <div class="testimonial-divider"></div>
+                                            <p class="testimonial-name">James</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-item">
+                                    <div class="testimonial-content">
+                                        <div class="testimonial-image">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Sarah" loading="lazy">
+                                        </div>
+                                        <div class="testimonial-text">
+                                            <p class="testimonial-comment">"I've tested a few NAD+ products. It's amazing, skin feels good, no irritation. really recommend"</p>
+                                            <div class="testimonial-divider"></div>
+                                            <p class="testimonial-name">Sarah</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Navigation Dots -->
+                            <div class="testimonials-dots">
+                                <span class="dot active" onclick="currentTestimonial(1)"></span>
+                                <span class="dot" onclick="currentTestimonial(2)"></span>
+                                <span class="dot" onclick="currentTestimonial(3)"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Notice Section -->
+                    <div class="shipping-notice-wrapper">
+                        <div class="shipping-notice">
+                            <p class="shipping-text">ORDER TODAY TO HAVE YOURS SHIPPED IN JUST 24 HOURS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Animated Banner -->
+    <div class="bottom-banner">
+        <div class="bottom-banner-text" id="bottomBannerText">OVER 10,000 HAPPY CUSTOMERS</div>
+    </div>
+
+    <!-- Sale Ending Soon Section -->
+    <section class="sale-ending-section" data-lazy-load>
+        <div class="sale-ending-container">
+            <div class="sale-ending-image">
+                <img src="../assets/images/recipe-rush-pdp-image-one.jpg" alt="Recipe Rush Product" loading="lazy">
+            </div>
+            <div class="sale-ending-content">
+                <h2 class="sale-ending-header">SALE ENDING SOON!</h2>
+                <p class="sale-ending-text-1">Don't miss your chance to grab Recipe Rush at it's biggest discount of the year ending tonight</p>
+                <p class="sale-ending-text-2">Take advantage of our <b>50% OFF</b> sale before it's gone. Elevate your energy, clarity and wellness - <b>TODAY!</b></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials Section -->
+    <section class="video-testimonials-section" data-lazy-load>
+        <div class="video-testimonials-container">
+            <div class="video-testimonials-iframe">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Product Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-testimonials-content">
+                <h2 class="video-testimonials-header">Powerful energy you can feel</h2>
+                <span class="video-testimonials-subtitle">MADE WITH ALL NATURAL, POWERFUL INGREDIANTS TO ENSURE THE BEST RESULTS</span>
+                
+                <div class="video-testimonials-rating">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-text">4.9/5 (2,847 reviews)</div>
+                </div>
+                
+                <div class="video-testimonials-descriptions">
+                    <p>Experience the incredible boost in energy and mental clarity that thousands of customers rave about. Our carefully selected ingredients work synergistically to deliver maximum results.</p>
+                    <p>Feel the difference from the very first dose as our premium formula gets to work immediately. Join the thousands who have transformed their daily routine with this powerful supplement.</p>
+                    <p>Don't just take our word for it - the science speaks for itself with clinically proven ingredients that have been tested for safety and effectiveness. Your body will thank you for choosing quality.</p>
+                    <p>Transform your energy levels and mental focus with our all-natural formula that's been trusted by over 10,000 satisfied customers worldwide. Experience the difference today.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" data-lazy-load>
+        <div class="how-it-works-container">
+            <div class="how-it-works-iframe">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="How It Works Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="how-it-works-content">
+                <h3 class="how-it-works-title">Recharge Cells, Reignite Vitality</h3>
+                <span class="how-it-works-subtitle">ALL ORDERS SHIPPED FROM UNITED STATES</span>
+                
+                <div class="how-it-works-features">
+                    <ul class="feature-list">
+                        <li>
+                            <div class="feature-icon">✓</div>
+                            BPA Free
+                        </li>
+                        <li>
+                            <div class="feature-icon">✓</div>
+                            All Natural Ingredients
+                        </li>
+                        <li>
+                            <div class="feature-icon">✓</div>
+                            Cruelty Free
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="how-it-works-descriptions">
+                    <p>Our advanced formula works at the cellular level to boost your body's natural energy production processes. Each ingredient is carefully selected for its proven effectiveness and safety profile.</p>
+                    <p>Within just 30 minutes of taking your first dose, you'll notice increased mental clarity and sustained energy throughout the day. The effects build up over time for even better results.</p>
+                    <p>Unlike synthetic energy drinks that cause crashes, our natural ingredients provide smooth, sustained energy without jitters or side effects. Feel the difference that quality makes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Quick Add Section -->
+    <section class="quick-add-section" data-lazy-load>
+        <div class="quick-add-container">
+            <div class="quick-add-image">
+                <img src="../assets/images/recipe-rush-pdp-image-one.jpg" alt="Recipe Rush Product" loading="lazy">
+                <div class="quick-add-toggle" id="quickAddToggle">
+                    <span class="toggle-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="quick-add-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-flask"></i></div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">Scientifically supported formula</h4>
+                        <p class="feature-description">Our advanced formula is backed by extensive research and clinical studies. Each ingredient is carefully selected for its proven effectiveness and safety profile.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">Gentle on your body, Powerful in action</h4>
+                        <p class="feature-description">Experience maximum benefits without harsh side effects or discomfort. Our gentle yet powerful formula works naturally with your body's processes.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-suitcase"></i></div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">Travel Friendly / Convenient</h4>
+                        <p class="feature-description">Perfect for your busy lifestyle with convenient packaging that fits anywhere. Take your wellness routine with you wherever you go, anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-add-cart" id="quickAddCart">
+                <div class="cart-top">
+                    <div class="cart-product">
+                        <img src="../assets/images/recipe-rush-pdp-image-one.jpg" alt="Recipe Rush Product" class="cart-product-image">
+                        <div class="cart-product-details">
+                            <h4 class="cart-product-name">Centy – Liposomal NAD</h4>
+                            <div class="cart-product-pricing">
+                                <span class="cart-current-price">£34.99</span>
+                                <span class="cart-original-price">£69.98</span>
+                                <span class="cart-savings">Save 50%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-bottom">
+                    <button class="cart-add-btn" onclick="window.QuickAddCart.addSingleToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gentle Wave Section -->
+    <section class="gentle-wave-section" data-lazy-load>
+        <!-- Waves Container -->
+        <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                   <g class="parallax">
+                       <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--primary-600-rgb), 0.3)" />
+                       <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--primary-600-rgb), 0.5)" />
+                       <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--primary-600-rgb), 0.7)" />
+                       <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(var(--primary-600-rgb), 0.9)" />
+                   </g>
+            </svg>
+        </div>
+        <!-- Waves end -->
+        <!-- Content after waves -->
+        <div class="wave-content">
+            <h2>THIRD PARTY PERFORMANCE TESTED</h2>
+            <p>Our products undergo rigorous third-party testing to ensure maximum effectiveness and safety. Each batch is independently verified for purity, potency, and quality standards. Trust in our commitment to delivering only the highest quality supplements backed by scientific validation.</p>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" data-lazy-load>
+        <div class="results-container">
+            <div class="results-left">
+                <h2 class="results-left-header">LET THE RESULTS SPEAK FOR THEMSELVES</h2>
+                <span class="results-left-subtitle">REAL PEOPLE...REAL RESULTS</span>
+                <div class="results-left-image">
+                    <img src="../assets/images/recipe-rush-pdp-image-one.jpg" alt="Recipe Rush Product" loading="lazy">
+                </div>
+            </div>
+            <div class="results-right">
+                <h3 class="results-right-header">OUR RESULTS</h3>
+                <div class="results-stats">
+                    <div class="result-item">
+                        <div class="result-chart">
+                            <div class="circle-chart" data-percentage="95">
+                                <svg class="progress-ring" width="80" height="80">
+                                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="36" cx="40" cy="40"/>
+                                    <circle class="progress-ring-circle progress-ring-fill" stroke="var(--primary-600)" stroke-width="4" fill="transparent" r="36" cx="40" cy="40" style="stroke-dasharray: 226.2;"/>
+                                </svg>
+                                <div class="chart-percentage">0%</div>
+                            </div>
+                        </div>
+                        <p class="result-description">Reported a noticeable boost in daily energy and reduced fatigue within first week</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-chart">
+                            <div class="circle-chart" data-percentage="87">
+                                <svg class="progress-ring" width="80" height="80">
+                                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="36" cx="40" cy="40"/>
+                                    <circle class="progress-ring-circle progress-ring-fill" stroke="var(--primary-600)" stroke-width="4" fill="transparent" r="36" cx="40" cy="40" style="stroke-dasharray: 226.2;"/>
+                                </svg>
+                                <div class="chart-percentage">0%</div>
+                            </div>
+                        </div>
+                        <p class="result-description">Experienced improved mental clarity and focus throughout the day</p>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-chart">
+                            <div class="circle-chart" data-percentage="92">
+                                <svg class="progress-ring" width="80" height="80">
+                                    <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="4" fill="transparent" r="36" cx="40" cy="40"/>
+                                    <circle class="progress-ring-circle progress-ring-fill" stroke="var(--primary-600)" stroke-width="4" fill="transparent" r="36" cx="40" cy="40" style="stroke-dasharray: 226.2;"/>
+                                </svg>
+                                <div class="chart-percentage">0%</div>
+                            </div>
+                        </div>
+                        <p class="result-description">Noticed better sleep quality and faster recovery from workouts</p>
+                    </div>
+                </div>
+                <span class="results-date">Results as of May, 2025</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sale Ends Today Banner -->
+    <div class="sale-ends-banner">
+        <div class="sale-ends-banner-text" id="saleEndsBannerText">SALE ENDS TODAY</div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" data-lazy-load>
+        <div class="faq-container">
+            <h2 class="faq-title">Frequently Asked Questions!</h2>
+            <div class="faq-divider"></div>
+            
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <p>What is Centy – Liposomal NAD and why do I need it?</p>
+                        <i class="fas fa-chevron-right faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Centy – Liposomal NAD is a premium supplement designed to support cellular energy production and overall wellness. You need it to help maintain optimal NAD+ levels in your body, which naturally decline with age and can impact your energy, mental clarity, and overall vitality.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <p>How is Centy – Liposomal NAD different from other products?</p>
+                        <i class="fas fa-chevron-right faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our liposomal delivery system ensures maximum absorption and bioavailability compared to traditional supplements. This advanced technology protects the NAD+ molecules and delivers them directly to your cells for optimal effectiveness.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <p>When will I start noticing results?</p>
+                        <i class="fas fa-chevron-right faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Many users report feeling increased energy and mental clarity within the first week of consistent use. For optimal results, we recommend taking it daily for at least 30 days to experience the full benefits.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <p>Is it safe to take daily?</p>
+                        <i class="fas fa-chevron-right faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, Centy – Liposomal NAD is formulated with safety in mind and is designed for daily use. However, we always recommend consulting with your healthcare provider before starting any new supplement regimen, especially if you have existing health conditions or are taking medications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RecipeRush</h3>
+                    <p>Your gateway to culinary excellence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="src/frontend/pages/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="src/frontend/pages/terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="src/frontend/pages/refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: reciperush01@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@Recipe_Rush" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@recipe_rush0?lang=en-GB" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/recipe__rush/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeRush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="cart-modal-header">
+                <h2 class="cart-modal-title">Shopping Cart</h2>
+                <button class="cart-modal-close" onclick="closeCart()">&times;</button>
+            </div>
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be populated here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-summary-row cart-summary-total">
+                    <span class="cart-summary-label">Total</span>
+                    <span class="cart-summary-value" id="cartTotal">£0.00</span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
+                <button class="btn-primary" onclick="showCheckoutForm()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content checkout-content">
+            <span class="close" onclick="closeCheckout()">&times;</span>
+            <h2>Checkout</h2>
+            
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div id="checkoutItems"></div>
+                <div class="checkout-total">
+                    <strong>Total: <span id="checkoutTotal">£0.00</span></strong>
+                </div>
+            </div>
+
+            <!-- Customer Information Form -->
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-section">
+                    <h3>Customer Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                        <small>We'll send your e-book download link to this email</small>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="form-section">
+                    <h3>Secure Payment</h3>
+                    <div class="payment-info">
+                        <div class="secure-payment-message">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            <strong>Secure Payment Processing</strong>
+                        </div>
+                        <p class="secure-payment-description">
+                            After you click "Pay Now", you'll be redirected to Stripe's secure checkout page where you can safely enter your payment details.
+                        </p>
+                        <ul class="payment-methods">
+                            <li class="payment-method">💳 Visa</li>
+                            <li class="payment-method">💳 Mastercard</li>
+                            <li class="payment-method">💳 American Express</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-button" class="btn-primary">
+                    <span id="button-text">Pay Now</span>
+                    <div id="spinner" class="spinner hidden"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Core Modules -->
+    <script src="../assets/js/memory-manager.js"></script>
+    <script src="../assets/js/dom-cache.js"></script>
+    <script src="../assets/js/utilities.js"></script>
+    <script src="../assets/js/cart-manager.js"></script>
+    <script src="../assets/js/quick-add-cart.js"></script>
+    
+    <!-- Feature Modules -->
+    <script src="../assets/js/cart-operations.js"></script>
+    <script src="../assets/js/ui-interactions.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/form-handlers.js"></script>
+    <script src="../assets/js/product-functions.js"></script>
+    
+    <!-- Main Application -->
+    <script src="../assets/js/app-config.js?v=1.0.1"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/config-loader.js?v=1.0.1"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
