@@ -337,6 +337,35 @@ small, .small-text {
     outline-offset: 2px;
 }
 
+.brand-text {
+    /* Inherit all styling from parent .nav-brand-link */
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+}
+
+.paw-icon {
+    color: #D2B48C; /* Light brown color */
+    font-size: 1.2em;
+    margin-left: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Mobile: Show only paw, hide text */
+@media (max-width: 768px) {
+    .brand-text {
+        display: none; 
+    }
+    
+    .paw-icon {
+        font-size: var(--text-3xl); 
+        margin-left: 0; 
+    }
+}
+
 .nav-menu {
     display: flex;
     list-style: none;

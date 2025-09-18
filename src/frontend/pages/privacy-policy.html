@@ -48,7 +48,10 @@
             
             <!-- Brand - Center -->
             <div class="nav-brand">
-                <a href="index.html" class="nav-brand-link" aria-label="Company Name home">Company Name</a>
+                <a href="/" class="nav-brand-link" aria-label="Pawsitive Peace home">
+                    <span class="brand-text">Pawsitive Peace</span>
+                    <span class="paw-icon">🐾</span>
+                </a>
             </div>
             
             <!-- Actions - Right Side -->
@@ -295,9 +298,9 @@
                 <div class="footer-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="src/frontend/pages/privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="src/frontend/pages/terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="src/frontend/pages/refund-policy.html">Refund Policy</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/refund-policy">Refund Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -341,10 +344,23 @@
         </div>
     </div>
 
-    <script src="../assets/js/app-config.js?v=1.0.1"></script>
-    <script src="../assets/js/config-loader.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <!-- Core Modules -->
+    <script src="../assets/js/memory-manager.js"></script>
+    <script src="../assets/js/dom-cache.js"></script>
+    <script src="../assets/js/utilities.js"></script>
     <script src="../assets/js/cart-manager.js"></script>
     <script src="../assets/js/quick-add-cart.js"></script>
+    
+    <!-- Feature Modules -->
+    <script src="../assets/js/cart-operations.js"></script>
+    <script src="../assets/js/ui-interactions.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/form-handlers.js"></script>
+    <script src="../assets/js/product-functions.js"></script>
+    
+    <!-- Main Application -->
+    <script src="../assets/js/app-config.js?v=1.0.1"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/config-loader.js?v=1.0.1"></script>
 </body>
 </html>
