@@ -1101,28 +1101,12 @@ small, .small-text {
     display: block;
 }
 
-.bundle-option::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: var(--space-4);
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--gray-300);
-    border-radius: 50%;
-    background: white;
-    transition: all 0.2s ease;
-}
 
 .bundle-option:hover {
     border-color: var(--gray-300);
     box-shadow: var(--shadow-sm);
 }
 
-.bundle-option:hover::before {
-    border-color: var(--primary-300);
-}
 
 .bundle-option.selected {
     border-color: var(--primary-600);
@@ -1131,31 +1115,25 @@ small, .small-text {
     transform: translateY(-1px);
 }
 
-.bundle-option.selected::before {
-    background: var(--primary-600);
-    border-color: var(--primary-600);
-}
 
 .bundle-option .tick {
-    display: none;
+    display: block;
     position: absolute;
     top: 50%;
     left: calc(var(--space-4) + 2px);
     transform: translateY(-50%);
-    color: white;
-    font-size: var(--text-xs);
-    font-weight: bold;
-    width: 20px;
-    height: 20px;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    text-align: center;
+    color: var(--warm-charcoal);
+    font-size: var(--text-lg);
     z-index: 5;
 }
 
+.bundle-option .tick i {
+    color: inherit;
+}
+
 .bundle-option.selected .tick {
-    display: flex;
+    display: block !important;
+    color: var(--tranquil-sage) !important;
 }
 
 .bundle-option.popular {
@@ -1210,7 +1188,7 @@ small, .small-text {
     align-items: center;
     flex-wrap: wrap;
     gap: var(--space-2);
-    padding-left: 2.5rem;
+    padding-left: 2rem;
 }
 
 .bundle-text {
@@ -1232,7 +1210,7 @@ small, .small-text {
 .bundle-price {
     font-size: var(--text-lg);
     font-weight: 700;
-    color: var(--primary-600);
+    color: var(--gray-900);
     font-family: var(--font-display);
 }
 

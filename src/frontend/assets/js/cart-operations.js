@@ -18,10 +18,10 @@ function addToCart() {
     } else {
         // Fallback for old product layout
         product = {
-            id: 'centy-liposomal-nad',
-            name: 'Centy – Liposomal NAD',
-            price: 34.99,
-            originalPrice: 69.98,
+            id: 'complete',
+            name: 'Complete Bundle',
+            price: 45,
+            originalPrice: 52,
             quantity: quantity,
             image: '../assets/images/recipe-rush-pdp-image-one.jpg'
         };
@@ -56,7 +56,7 @@ function addToCart() {
 
 function removeFromCart(productId) {
     window.CartManager.removeItem(productId);
-    showNotification('The Pupsicle removed from cart!', 'info', 2000);
+    showNotification('Item removed from cart!', 'info', 2000);
 }
 
 function updateQuantity(productId, newQuantity) {

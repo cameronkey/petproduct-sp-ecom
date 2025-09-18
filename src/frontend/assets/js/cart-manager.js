@@ -258,13 +258,8 @@
             stockBadge.className = 'cart-item-stock';
             stockBadge.textContent = 'In Stock';
 
-            const variantP = document.createElement('p');
-            variantP.className = 'cart-item-variant';
-            variantP.textContent = 'Digital Product';
-
             details.appendChild(nameHeader);
             details.appendChild(stockBadge);
-            details.appendChild(variantP);
 
             return details;
         },

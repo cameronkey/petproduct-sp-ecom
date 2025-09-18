@@ -59,17 +59,17 @@ function findSelectedBundle() {
 function extractBundleData(selectedBundle) {
     const price = selectedBundle.dataset.price;
     const originalPrice = selectedBundle.dataset.original;
-    const quantity = selectedBundle.value;
+    const productId = selectedBundle.value;
     
     // Get bundle text for display name using cached elements
     const bundleOptionElement = selectedBundle.closest('.bundle-option');
     const bundleTextElement = bundleOptionElement ? bundleOptionElement.querySelector('.bundle-text') : null;
-    const bundleText = bundleTextElement ? bundleTextElement.textContent : `Bundle ${quantity}`;
+    const bundleText = bundleTextElement ? bundleTextElement.textContent : `Product ${productId}`;
     
     return {
         price: parseFloat(price),
-        originalPrice: parseFloat(originalPrice),
-        quantity: parseInt(quantity),
+        originalPrice: parseFloat(originalPrice) || null,
+        productId: productId,
         bundleText: bundleText
     };
 }
@@ -77,11 +77,11 @@ function extractBundleData(selectedBundle) {
 // Update global product data
 function updateGlobalProductData(bundleData) {
     window.currentProduct = {
-        id: `${AppConfig.product.idPrefix}${bundleData.quantity}`,
-        name: `${AppConfig.product.namePrefix}${bundleData.bundleText}${AppConfig.product.nameSuffix}`,
+        id: bundleData.productId,
+        name: bundleData.bundleText,
         price: bundleData.price,
         originalPrice: bundleData.originalPrice,
-        quantity: bundleData.quantity,
+        quantity: 1, // Always 1 for individual products
         image: AppConfig.product.imagePath
     };
     
