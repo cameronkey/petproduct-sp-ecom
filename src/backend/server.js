@@ -635,6 +635,222 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
 });
 
+// Admin panel route
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/pages/admin.html'));
+});
+
+// Send tracking email function
+async function sendTrackingEmail(customerEmail, customerName, orderId, trackingNumber, carrier, estimatedDelivery) {
+    console.log('📦 Preparing tracking email...');
+    console.log('   To:', customerEmail);
+    console.log('   Order:', orderId);
+    console.log('   Tracking:', trackingNumber);
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: customerEmail,
+        subject: 'Your Pawsitive Peace Order is On The Way! 🚚',
+        html: `
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+            <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F0;">
+                <div style="background: linear-gradient(135deg, #7FB069 0%, #6B9A4F 100%); color: #FAF7F0; padding: 2rem; text-align: center; border-radius: 16px 16px 0 0;">
+                    <h1 style="margin: 0; font-size: 2rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 700;"><i class="fas fa-truck" style="margin-right: 10px;"></i>Your Order is On The Way!</h1>
+                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem; font-weight: 500;">Track your Pupsicle delivery</p>
+                </div>
+                
+                <div style="padding: 2rem; background: #FAF7F0; border-radius: 0 0 16px 16px;">
+                    <h2 style="color: #4A4A4A; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;">Hello ${customerName}!</h2>
+                    
+                    <p style="color: #4A4A4A; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400;">
+                        Great news! Your <strong>The Pupsicle</strong> has been shipped and is on its way to you.
+                    </p>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E1EFD9; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                        <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-shipping-fast" style="margin-right: 8px; color: #7FB069;"></i>Shipping Details</h3>
+                        <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                            <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-barcode" style="margin-right: 6px; color: #7FB069;"></i>Tracking Number:</strong> ${trackingNumber}</p>
+                            <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-truck" style="margin-right: 6px; color: #7FB069;"></i>Carrier:</strong> ${carrier}</p>
+                            <p style="margin: 0;"><strong><i class="fas fa-calendar" style="margin-right: 6px; color: #7FB069;"></i>Estimated Delivery:</strong> ${estimatedDelivery}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #F0F7ED; border: 1px solid #7FB069; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                        <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #7FB069;"></i>What's Next?</h3>
+                        <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                            <p style="margin: 0 0 0.8rem 0;">• Use the tracking number above to monitor your package</p>
+                            <p style="margin: 0 0 0.8rem 0;">• You'll receive delivery notifications from ${carrier}</p>
+                            <p style="margin: 0;">• Your Pupsicle will arrive ready for your dog to enjoy!</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #6B6B6B; font-size: 0.9rem; margin-top: 2rem; font-weight: 400;">
+                        <strong>Order ID:</strong> ${orderId}<br>
+                        <strong>Shipped Date:</strong> ${new Date().toLocaleDateString()}<br>
+                        <strong>Status:</strong> Shipped
+                    </p>
+                    
+                    <hr style="border: none; border-top: 1px solid #E1EFD9; margin: 2rem 0;">
+                    
+                    <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
+                        Questions about your order? Contact us at 
+                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                    </p>
+                </div>
+            </div>
+        `
+    };
+
+    try {
+        console.log('📤 Attempting to send tracking email...');
+        const result = await transporter.sendMail(mailOptions);
+        console.log('✅ Tracking email sent successfully!');
+        console.log('   Message ID:', result.messageId);
+        return true;
+    } catch (error) {
+        console.error('❌ Error sending tracking email:');
+        console.error('   Error type:', error.constructor.name);
+        console.error('   Error message:', error.message);
+        return false;
+    }
+}
+
+// Admin endpoint for sending tracking emails
+app.post('/admin/send-tracking-email', async (req, res) => {
+    try {
+        const { orderId, trackingNumber, carrier, estimatedDelivery, customerEmail, customerName } = req.body;
+
+        // Validate required fields
+        if (!orderId || !trackingNumber || !carrier) {
+            return res.status(400).json({ 
+                error: 'Missing required fields',
+                required: ['orderId', 'trackingNumber', 'carrier']
+            });
+        }
+
+        // If customer details not provided, try to get from Stripe (optional)
+        let finalCustomerEmail = customerEmail;
+        let finalCustomerName = customerName;
+
+        if (!finalCustomerEmail || !finalCustomerName) {
+            try {
+                const session = await stripe.checkout.sessions.retrieve(orderId);
+                finalCustomerEmail = session.customer_details.email;
+                finalCustomerName = session.customer_details.name;
+                console.log('📧 Retrieved customer details from Stripe');
+            } catch (stripeError) {
+                console.warn('⚠️ Could not retrieve customer details from Stripe:', stripeError.message);
+                if (!finalCustomerEmail || !finalCustomerName) {
+                    return res.status(400).json({ 
+                        error: 'Customer details required when Stripe lookup fails',
+                        required: ['customerEmail', 'customerName']
+                    });
+                }
+            }
+        }
+
+        // Set default estimated delivery if not provided
+        const finalEstimatedDelivery = estimatedDelivery || new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
+
+        console.log('📦 Admin sending tracking email...');
+        console.log('   Order ID:', orderId);
+        console.log('   Tracking:', trackingNumber);
+        console.log('   Carrier:', carrier);
+        console.log('   Customer:', finalCustomerEmail);
+
+        const emailSent = await sendTrackingEmail(
+            finalCustomerEmail, 
+            finalCustomerName, 
+            orderId, 
+            trackingNumber, 
+            carrier, 
+            finalEstimatedDelivery
+        );
+
+        if (emailSent) {
+    res.json({
+                success: true, 
+                message: 'Tracking email sent successfully',
+                orderId: orderId,
+                trackingNumber: trackingNumber,
+                customerEmail: finalCustomerEmail
+            });
+        } else {
+            res.status(500).json({ 
+                error: 'Failed to send tracking email',
+                orderId: orderId
+            });
+        }
+
+    } catch (error) {
+        console.error('❌ Admin tracking email error:', error);
+        res.status(500).json({ 
+            error: 'Internal server error',
+            details: error.message
+        });
+    }
+});
+
+// Preview tracking email template
+app.get('/preview-tracking-email', (req, res) => {
+    const customerName = 'John Doe';
+    const orderId = 'cs_test_abc123456789';
+    const trackingNumber = 'RM123456789GB';
+    const carrier = 'Royal Mail';
+    const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
+    
+    const emailHTML = `
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F0;">
+            <div style="background: linear-gradient(135deg, #7FB069 0%, #6B9A4F 100%); color: #FAF7F0; padding: 2rem; text-align: center; border-radius: 16px 16px 0 0;">
+                <h1 style="margin: 0; font-size: 2rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 700;"><i class="fas fa-truck" style="margin-right: 10px;"></i>Your Order is On The Way!</h1>
+                <p style="margin: 1rem 0 0 0; font-size: 1.1rem; font-weight: 500;">Track your Pupsicle delivery</p>
+            </div>
+            
+            <div style="padding: 2rem; background: #FAF7F0; border-radius: 0 0 16px 16px;">
+                <h2 style="color: #4A4A4A; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;">Hello ${customerName}!</h2>
+                
+                <p style="color: #4A4A4A; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400;">
+                    Great news! Your <strong>The Pupsicle</strong> has been shipped and is on its way to you.
+                </p>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E1EFD9; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                    <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-shipping-fast" style="margin-right: 8px; color: #7FB069;"></i>Shipping Details</h3>
+                    <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                        <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-barcode" style="margin-right: 6px; color: #7FB069;"></i>Tracking Number:</strong> ${trackingNumber}</p>
+                        <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-truck" style="margin-right: 6px; color: #7FB069;"></i>Carrier:</strong> ${carrier}</p>
+                        <p style="margin: 0;"><strong><i class="fas fa-calendar" style="margin-right: 6px; color: #7FB069;"></i>Estimated Delivery:</strong> ${estimatedDelivery}</p>
+                    </div>
+                </div>
+                
+                <div style="background: #F0F7ED; border: 1px solid #7FB069; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                    <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #7FB069;"></i>What's Next?</h3>
+                    <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                        <p style="margin: 0 0 0.8rem 0;">• Use the tracking number above to monitor your package</p>
+                        <p style="margin: 0 0 0.8rem 0;">• You'll receive delivery notifications from ${carrier}</p>
+                        <p style="margin: 0;">• Your Pupsicle will arrive ready for your dog to enjoy!</p>
+                    </div>
+                </div>
+                
+                <p style="color: #6B6B6B; font-size: 0.9rem; margin-top: 2rem; font-weight: 400;">
+                    <strong>Order ID:</strong> ${orderId}<br>
+                    <strong>Shipped Date:</strong> ${new Date().toLocaleDateString()}<br>
+                    <strong>Status:</strong> Shipped
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #E1EFD9; margin: 2rem 0;">
+                
+                <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
+                    Questions about your order? Contact us at 
+                    <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                </p>
+            </div>
+        </div>
+    `;
+    
+    res.send(emailHTML);
+});
+
 // Email template preview endpoint
 app.get('/preview-email', (req, res) => {
     const customerName = 'John Doe';
