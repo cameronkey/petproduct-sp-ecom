@@ -201,23 +201,24 @@ async function sendOrderConfirmationEmail(customerEmail, customerName, orderId) 
         to: customerEmail,
         subject: 'Your Pawsitive Peace Order is Ready! 🐾',
         html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center; border-radius: 10px 10px 0 0;">
-                    <h1 style="margin: 0; font-size: 2rem;">🎉 Thank You for Your Purchase!</h1>
-                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">Your order is being processed and will be shipped soon</p>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+            <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F0;">
+                <div style="background: linear-gradient(135deg, #7FB069 0%, #6B9A4F 100%); color: #FAF7F0; padding: 2rem; text-align: center; border-radius: 16px 16px 0 0;">
+                    <h1 style="margin: 0; font-size: 2rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 700;"><i class="fas fa-check-circle" style="margin-right: 10px;"></i>Thank You for Your Purchase!</h1>
+                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem; font-weight: 500;">Your order is being processed and will be shipped soon</p>
                 </div>
                 
-                <div style="padding: 2rem; background: #f8f9fa; border-radius: 0 0 10px 10px;">
-                    <h2 style="color: #2c3e50; margin-bottom: 1rem;">Hello ${customerName}!</h2>
+                <div style="padding: 2rem; background: #FAF7F0; border-radius: 0 0 16px 16px;">
+                    <h2 style="color: #4A4A4A; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;">Hello ${customerName}!</h2>
                     
-                    <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
+                    <p style="color: #4A4A4A; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400;">
                         Thank you for purchasing <strong>The Pupsicle</strong> from Pawsitive Peace! 
                         Your order is being processed and will be shipped to you soon.
                     </p>
                     
-                    <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef; margin: 1.5rem 0;">
-                        <h3 style="color: #2c3e50; margin-top: 0;">🐾 What You'll Get:</h3>
-                        <ul style="color: #555; line-height: 1.6;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E1EFD9; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                        <h3 style="color: #4A4A4A; margin-top: 0; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-paw" style="margin-right: 8px; color: #7FB069;"></i>What You'll Get:</h3>
+                        <ul style="color: #4A4A4A; line-height: 1.6; font-weight: 400;">
                             <li>High-Quality Dog Toy - The Pupsicle</li>
                             <li>Dishwasher Safe Design</li>
                             <li>Non-Toxic Materials</li>
@@ -226,24 +227,37 @@ async function sendOrderConfirmationEmail(customerEmail, customerName, orderId) 
                         </ul>
                     </div>
                     
-                    <div style="background: #e8f5e8; border: 1px solid #4caf50; padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
-                        <p style="margin: 0; color: #2e7d32; font-size: 0.9rem;">
-                            <strong>Shipping Info:</strong> Your order will be processed within 1-2 business days and shipped via tracked delivery. 
-                            You'll receive tracking information once your order ships.
-                        </p>
+                    <div style="background: #F0F7ED; border: 1px solid #7FB069; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                        <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-box" style="margin-right: 8px; color: #7FB069;"></i>Shipping & Delivery Information</h3>
+                        <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                            <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-clock" style="margin-right: 6px; color: #7FB069;"></i>Processing Time:</strong> 1-2 business days</p>
+                            <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-truck" style="margin-right: 6px; color: #7FB069;"></i>Shipping Method:</strong> Tracked delivery via Royal Mail</p>
+                            <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-envelope" style="margin-right: 6px; color: #7FB069;"></i>Tracking Updates:</strong> We'll email you when your order ships with tracking details</p>
+                            <p style="margin: 0;"><strong><i class="fas fa-calendar" style="margin-right: 6px; color: #7FB069;"></i>Expected Delivery:</strong> 3-5 business days after shipping</p>
+                        </div>
                     </div>
                     
-                    <p style="color: #666; font-size: 0.9rem; margin-top: 2rem;">
+                    <div style="background: white; border: 1px solid #E1EFD9; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                        <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-list" style="margin-right: 8px; color: #7FB069;"></i>What Happens Next?</h3>
+                        <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                            <p style="margin: 0 0 0.8rem 0;">1. <strong>Order Processing:</strong> We'll prepare your Pupsicle for shipping</p>
+                            <p style="margin: 0 0 0.8rem 0;">2. <strong>Shipping Notification:</strong> You'll receive an email with tracking details</p>
+                            <p style="margin: 0 0 0.8rem 0;">3. <strong>Delivery:</strong> Your order will arrive at your doorstep</p>
+                            <p style="margin: 0;">4. <strong>Enjoy:</strong> Watch your dog love their new Pupsicle!</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #6B6B6B; font-size: 0.9rem; margin-top: 2rem; font-weight: 400;">
                         <strong>Order ID:</strong> ${orderId}<br>
                         <strong>Purchase Date:</strong> ${new Date().toLocaleDateString()}<br>
                         <strong>Status:</strong> Processing
                     </p>
                     
-                    <hr style="border: none; border-top: 1px solid #e9ecef; margin: 2rem 0;">
+                    <hr style="border: none; border-top: 1px solid #E1EFD9; margin: 2rem 0;">
                     
-                    <p style="color: #666; font-size: 0.9rem; text-align: center;">
+                    <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
                         If you have any questions, please contact us at 
-                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #667eea;">hello@pawsitivepeace.co.uk</a>
+                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
                     </p>
                 </div>
             </div>
@@ -619,6 +633,77 @@ app.get('/test-webhook', async (req, res) => {
 // Root endpoint - serve the main HTML page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
+});
+
+// Email template preview endpoint
+app.get('/preview-email', (req, res) => {
+    const customerName = 'John Doe';
+    const orderId = 'PP-' + Date.now();
+    
+    const emailHTML = `
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F0;">
+            <div style="background: linear-gradient(135deg, #7FB069 0%, #6B9A4F 100%); color: #FAF7F0; padding: 2rem; text-align: center; border-radius: 16px 16px 0 0;">
+                <h1 style="margin: 0; font-size: 2rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 700;"><i class="fas fa-check-circle" style="margin-right: 10px;"></i>Thank You for Your Purchase!</h1>
+                <p style="margin: 1rem 0 0 0; font-size: 1.1rem; font-weight: 500;">Your order is being processed and will be shipped soon</p>
+            </div>
+            
+            <div style="padding: 2rem; background: #FAF7F0; border-radius: 0 0 16px 16px;">
+                <h2 style="color: #4A4A4A; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;">Hello ${customerName}!</h2>
+                
+                <p style="color: #4A4A4A; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400;">
+                    Thank you for purchasing <strong>The Pupsicle</strong> from Pawsitive Peace! 
+                    Your order is being processed and will be shipped to you soon.
+                </p>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E1EFD9; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                    <h3 style="color: #4A4A4A; margin-top: 0; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-paw" style="margin-right: 8px; color: #7FB069;"></i>What You'll Get:</h3>
+                    <ul style="color: #4A4A4A; line-height: 1.6; font-weight: 400;">
+                        <li>High-Quality Dog Toy - The Pupsicle</li>
+                        <li>Dishwasher Safe Design</li>
+                        <li>Non-Toxic Materials</li>
+                        <li>Freezer Safe for Extended Play</li>
+                        <li>Durable Construction</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #F0F7ED; border: 1px solid #7FB069; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                    <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-box" style="margin-right: 8px; color: #7FB069;"></i>Shipping & Delivery Information</h3>
+                    <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                        <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-clock" style="margin-right: 6px; color: #7FB069;"></i>Processing Time:</strong> 1-2 business days</p>
+                        <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-truck" style="margin-right: 6px; color: #7FB069;"></i>Shipping Method:</strong> Tracked delivery via Royal Mail</p>
+                        <p style="margin: 0 0 0.8rem 0;"><strong><i class="fas fa-envelope" style="margin-right: 6px; color: #7FB069;"></i>Tracking Updates:</strong> We'll email you when your order ships with tracking details</p>
+                        <p style="margin: 0;"><strong><i class="fas fa-calendar" style="margin-right: 6px; color: #7FB069;"></i>Expected Delivery:</strong> 3-5 business days after shipping</p>
+                    </div>
+                </div>
+                
+                <div style="background: white; border: 1px solid #E1EFD9; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(127, 176, 105, 0.1);">
+                    <h3 style="color: #4A4A4A; margin-top: 0; margin-bottom: 1rem; font-family: 'Poppins', Arial, sans-serif; font-weight: 600;"><i class="fas fa-list" style="margin-right: 8px; color: #7FB069;"></i>What Happens Next?</h3>
+                    <div style="color: #4A4A4A; font-size: 0.9rem; line-height: 1.6; font-weight: 400;">
+                        <p style="margin: 0 0 0.8rem 0;">1. <strong>Order Processing:</strong> We'll prepare your Pupsicle for shipping</p>
+                        <p style="margin: 0 0 0.8rem 0;">2. <strong>Shipping Notification:</strong> You'll receive an email with tracking details</p>
+                        <p style="margin: 0 0 0.8rem 0;">3. <strong>Delivery:</strong> Your order will arrive at your doorstep</p>
+                        <p style="margin: 0;">4. <strong>Enjoy:</strong> Watch your dog love their new Pupsicle!</p>
+                    </div>
+                </div>
+                
+                <p style="color: #6B6B6B; font-size: 0.9rem; margin-top: 2rem; font-weight: 400;">
+                    <strong>Order ID:</strong> ${orderId}<br>
+                    <strong>Purchase Date:</strong> ${new Date().toLocaleDateString()}<br>
+                    <strong>Status:</strong> Processing
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #E1EFD9; margin: 2rem 0;">
+                
+                <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
+                    If you have any questions, please contact us at 
+                    <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                </p>
+            </div>
+        </div>
+    `;
+    
+    res.send(emailHTML);
 });
 
 // Clean URL routes for main pages
