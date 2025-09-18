@@ -182,6 +182,9 @@
         <div class="admin-header">
             <h1><i class="fas fa-paw" style="margin-right: 10px;"></i>Admin Panel</h1>
             <p>Send tracking emails to customers</p>
+            <button class="btn btn-secondary" onclick="logout()" style="margin-top: 1rem; width: auto; padding: 0.5rem 1rem;">
+                <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i>Logout
+            </button>
         </div>
 
         <div class="admin-card">
@@ -331,6 +334,25 @@
 
         function previewEmail() {
             window.open('/preview-tracking-email', '_blank');
+        }
+
+        async function logout() {
+            try {
+                const response = await fetch('/admin/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    window.location.href = '/admin/login';
+                } else {
+                    alert('Error logging out. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please try again.');
+            }
         }
     </script>
 </body>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawsitive Peace - Admin Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #FAF7F0;
+            color: #4A4A4A;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #7FB069;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #6B6B6B;
+            font-size: 1rem;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(127, 176, 105, 0.1);
+            border: 1px solid #E1EFD9;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4A4A4A;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E1EFD9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #7FB069;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #7FB069 0%, #6B9A4F 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .status-error {
+            background: #FFEBEE;
+            color: #C62828;
+            border: 1px solid #FF8A80;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: #7FB069;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1rem;
+            }
+            
+            .login-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1><i class="fas fa-paw" style="margin-right: 10px;"></i>Admin Login</h1>
+            <p>Enter password to access admin panel</p>
+        </div>
+
+        <div class="login-card">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Admin Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Enter admin password">
+                </div>
+
+                <button type="submit" class="btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>Login
+                </button>
+
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner"></i> Authenticating...
+                </div>
+
+                <div id="statusMessage"></div>
+            </form>
+
+            <div class="back-link">
+                <a href="/"><i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back to Website</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loading');
+            const statusMessage = document.getElementById('statusMessage');
+            const password = document.getElementById('password').value;
+            
+            // Show loading state
+            loginBtn.disabled = true;
+            loading.style.display = 'block';
+            statusMessage.innerHTML = '';
+
+            try {
+                const response = await fetch('/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Redirect to admin panel
+                    window.location.href = '/admin';
+                } else {
+                    statusMessage.innerHTML = `
+                        <div class="status-message status-error">
+                            <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i>
+                            ${result.error || 'Invalid password'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusMessage.innerHTML = `
+                    <div class="status-message status-error">
+                        <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i>
+                        Network Error: ${error.message}
+                    </div>
+                `;
+            } finally {
+                // Hide loading state
+                loginBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

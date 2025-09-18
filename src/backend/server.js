@@ -9,6 +9,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const cors = require('cors');
+const session = require('express-session');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 
@@ -30,6 +31,29 @@ if (process.env.SENTRY_DSN) {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// CORS configuration (always needed)
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk']
+        : true,
+    credentials: true
+}));
+
+// Session middleware for admin authentication (always needed)
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'pawsitive-peace-admin-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+}));
+
+// JSON parsing middleware (always needed)
+app.use(express.json({ limit: '10mb' }));
+
 // Production security middleware
 if (process.env.NODE_ENV === 'production') {
     // Rate limiting for production - configurable via environment variables
@@ -41,13 +65,6 @@ if (process.env.NODE_ENV === 'production') {
         max: rateLimitMax, // limit each IP to max requests per windowMs
         message: 'Too many requests from this IP, please try again later.'
     });
-    // CORS must come BEFORE rate limiting to allow cross-origin requests
-    app.use(cors({
-        origin: process.env.NODE_ENV === 'production' 
-            ? ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk']
-            : true,
-        credentials: true
-    }));
     
     // Explicit CORS headers to ensure proper response
     app.use((req, res, next) => {
@@ -67,7 +84,6 @@ if (process.env.NODE_ENV === 'production') {
             next();
         }
     });
-    app.use(express.json({ limit: '10mb' }));
 
     app.use(limiter);
 
@@ -630,13 +646,58 @@ app.get('/test-webhook', async (req, res) => {
 });
 
 
+// Authentication middleware for admin routes
+function requireAdminAuth(req, res, next) {
+    if (req.session && req.session.adminAuthenticated) {
+        return next();
+    } else {
+        return res.redirect('/admin/login');
+    }
+}
+
+// Admin login route
+app.get('/admin/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/pages/admin-login.html'));
+});
+
+// Admin login POST route
+app.post('/admin/login', express.json(), (req, res) => {
+    const { password } = req.body;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminPassword) {
+        return res.status(500).json({ 
+            error: 'Admin password not configured' 
+        });
+    }
+
+    if (password === adminPassword) {
+        req.session.adminAuthenticated = true;
+        res.json({ success: true, message: 'Login successful' });
+    } else {
+        res.status(401).json({ 
+            error: 'Invalid password' 
+        });
+    }
+});
+
+// Admin logout route
+app.post('/admin/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Could not log out' });
+        }
+        res.json({ success: true, message: 'Logged out successfully' });
+    });
+});
+
 // Root endpoint - serve the main HTML page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
 });
 
-// Admin panel route
-app.get('/admin', (req, res) => {
+// Admin panel route (protected)
+app.get('/admin', requireAdminAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/admin.html'));
 });
 
@@ -715,8 +776,8 @@ async function sendTrackingEmail(customerEmail, customerName, orderId, trackingN
     }
 }
 
-// Admin endpoint for sending tracking emails
-app.post('/admin/send-tracking-email', async (req, res) => {
+// Admin endpoint for sending tracking emails (protected)
+app.post('/admin/send-tracking-email', requireAdminAuth, async (req, res) => {
     try {
         const { orderId, trackingNumber, carrier, estimatedDelivery, customerEmail, customerName } = req.body;
 
