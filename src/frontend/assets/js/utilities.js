@@ -57,7 +57,7 @@ function setupNotificationCloseHandler(closeButton, notification) {
 
 // Animate notification in
 function animateNotificationIn(notification) {
-    notification.style.transform = 'translateY(-100%)';
+    notification.style.transform = 'translateY(100%)';
     notification.style.opacity = '0';
 
     const showTimer = setTimeout(() => {
@@ -75,7 +75,7 @@ function setupNotificationAutoRemoval(notification, duration) {
     if (duration <= 0) return;
 
     const hideTimer = setTimeout(() => {
-        notification.style.transform = 'translateY(-100%)';
+        notification.style.transform = 'translateY(100%)';
         notification.style.opacity = '0';
         
         const removeTimer = setTimeout(() => {
@@ -92,6 +92,17 @@ function setupNotificationAutoRemoval(notification, duration) {
     if (window.MemoryManager) {
         MemoryManager.addTimer(hideTimer, 'timeout');
     }
+}
+
+// Cart badge pulse animation
+function pulseCartBadge() {
+    const cartCounts = document.querySelectorAll('.cart-count');
+    cartCounts.forEach(cartCount => {
+        cartCount.classList.add('pulse');
+        setTimeout(() => {
+            cartCount.classList.remove('pulse');
+        }, 600);
+    });
 }
 
 // Main notification function
@@ -138,4 +149,5 @@ function validateConfiguration() {
 
 // Export functions for global access
 window.showNotification = showNotification;
+window.pulseCartBadge = pulseCartBadge;
 window.validateConfiguration = validateConfiguration;

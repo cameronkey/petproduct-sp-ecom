@@ -74,7 +74,7 @@ const AppConfig = {
         animationFrame: 16,
         showDelay: 100,
         hideDelay: 300,
-        defaultDuration: 4000,
+        defaultDuration: 2000,
         
         // Banner animation
         bannerRepeatCount: 20,

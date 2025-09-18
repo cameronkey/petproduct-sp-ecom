@@ -44,12 +44,19 @@ function addToCart() {
         });
     }
     
-    showNotification('Product added to cart!', 'success');
+    // Get product name for notification
+    const productName = 'The Pupsicle';
+    showNotification(`${productName} added to cart!`, 'success', 2000);
+    
+    // Trigger cart badge pulse animation
+    if (window.pulseCartBadge) {
+        pulseCartBadge();
+    }
 }
 
 function removeFromCart(productId) {
     window.CartManager.removeItem(productId);
-    showNotification('Product removed from cart!', 'info');
+    showNotification('The Pupsicle removed from cart!', 'info', 2000);
 }
 
 function updateQuantity(productId, newQuantity) {
