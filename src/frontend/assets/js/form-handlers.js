@@ -156,7 +156,7 @@ async function processPayment(firstName, lastName, email) {
             name: item.name,
             price: item.price,
             quantity: item.quantity,
-            image: item.image || 'https://reciperush.co.uk/images/recipe-rush-pdp-image-one.jpg'
+            image: item.image || 'https://pawsitivepeace.co.uk/images/the-pupsicle-pdp-image-one.jpg'
         }));
 
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);

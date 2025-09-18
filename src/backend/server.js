@@ -44,14 +44,14 @@ if (process.env.NODE_ENV === 'production') {
     // CORS must come BEFORE rate limiting to allow cross-origin requests
     app.use(cors({
         origin: process.env.NODE_ENV === 'production' 
-            ? ['https://reciperush.co.uk', 'https://www.reciperush.co.uk']
+            ? ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk']
             : true,
         credentials: true
     }));
     
     // Explicit CORS headers to ensure proper response
     app.use((req, res, next) => {
-        const allowedOrigins = ['https://reciperush.co.uk', 'https://www.reciperush.co.uk'];
+        const allowedOrigins = ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk'];
         const origin = req.headers.origin;
         
         if (allowedOrigins.includes(origin)) {
@@ -106,8 +106,6 @@ const csrfLimiter = rateLimit({
     }
 });
 
-// Store for download tokens (in production, use a database)
-const downloadTokens = new Map();
 
 // CSRF token store (in production, use a database or session store)
 const csrfTokens = new Map();
@@ -137,31 +135,6 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     }, 1000); // Delay verification to not block server startup
 }
 
-// Generate secure download token
-function generateDownloadToken(customerEmail, orderId) {
-    const token = crypto.randomBytes(32).toString('hex');
-    // Production: 7 days, Development: 30 days for testing
-    const expiryDays = process.env.NODE_ENV === 'production' ? 7 : 30;
-    const expiry = Date.now() + (expiryDays * 24 * 60 * 60 * 1000);
-
-    downloadTokens.set(token, {
-        email: customerEmail,
-        orderId: orderId,
-        expiry: expiry,
-        downloads: 0,
-        maxDownloads: 5
-    });
-
-    if (process.env.NODE_ENV !== 'production') {
-        console.log('🔑 Generated download token:', {
-            token: token.substring(0, 10) + '...',
-            email: customerEmail,
-            expiry: new Date(expiry).toISOString()
-        });
-    }
-
-    return token;
-}
 
 // Generate CSRF token
 function generateCSRFToken() {
@@ -217,70 +190,60 @@ if (process.env.NODE_ENV !== 'test') {
     cleanupInterval = setInterval(cleanupExpiredCSRFTokens, 5 * 60 * 1000);
 }
 
-// Send e-book delivery email
-async function sendEbookEmail(customerEmail, customerName, downloadToken, orderId) {
-    const downloadUrl = `${process.env.BASE_URL}/download/${downloadToken}`;
-
-    console.log('📧 Preparing e-book email...');
+// Send order confirmation email
+async function sendOrderConfirmationEmail(customerEmail, customerName, orderId) {
+    console.log('📧 Preparing order confirmation email...');
     console.log('   From:', process.env.EMAIL_USER);
     console.log('   To:', customerEmail);
-    console.log('   Download URL:', downloadUrl);
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: customerEmail,
-        subject: 'Your RecipeRush E-Book is Ready! 📚',
+        subject: 'Your Pawsitive Peace Order is Ready! 🐾',
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center; border-radius: 10px 10px 0 0;">
                     <h1 style="margin: 0; font-size: 2rem;">🎉 Thank You for Your Purchase!</h1>
-                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">Your Complete Recipe Collection is ready for download</p>
+                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">Your order is being processed and will be shipped soon</p>
                 </div>
                 
                 <div style="padding: 2rem; background: #f8f9fa; border-radius: 0 0 10px 10px;">
                     <h2 style="color: #2c3e50; margin-bottom: 1rem;">Hello ${customerName}!</h2>
                     
                     <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">
-                        Thank you for purchasing <strong>The Complete Recipe Collection</strong> from RecipeRush! 
-                        Your e-book is now ready for download.
+                        Thank you for purchasing <strong>The Pupsicle</strong> from Pawsitive Peace! 
+                        Your order is being processed and will be shipped to you soon.
                     </p>
                     
                     <div style="background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef; margin: 1.5rem 0;">
-                        <h3 style="color: #2c3e50; margin-top: 0;">📖 What You'll Get:</h3>
+                        <h3 style="color: #2c3e50; margin-top: 0;">🐾 What You'll Get:</h3>
                         <ul style="color: #555; line-height: 1.6;">
-                            <li>80 Restaurant-Quality Recipes</li>
-                            <li>Vegan, Vegetarian, Pescatarian, Carnivore, Keto, High Protein Desserts</li>
-                            <li>Quick 30-Minute Meals</li>
-                            <li>Professional Chef Secrets</li>
-                            <li>Instant Digital Download</li>
-                            <li>Works on All Devices</li>
+                            <li>High-Quality Dog Toy - The Pupsicle</li>
+                            <li>Dishwasher Safe Design</li>
+                            <li>Non-Toxic Materials</li>
+                            <li>Freezer Safe for Extended Play</li>
+                            <li>Durable Construction</li>
                         </ul>
                     </div>
                     
-                    <div style="text-align: center; margin: 2rem 0;">
-                        <a href="${downloadUrl}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
-                            📥 Download Your E-Book
-                        </a>
-                    </div>
-                    
-                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
-                        <p style="margin: 0; color: #856404; font-size: 0.9rem;">
-                            <strong>Important:</strong> This download link expires in 7 days and can be used up to 5 times. 
-                            Please save your e-book to your device for future access.
+                    <div style="background: #e8f5e8; border: 1px solid #4caf50; padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
+                        <p style="margin: 0; color: #2e7d32; font-size: 0.9rem;">
+                            <strong>Shipping Info:</strong> Your order will be processed within 1-2 business days and shipped via tracked delivery. 
+                            You'll receive tracking information once your order ships.
                         </p>
                     </div>
                     
                     <p style="color: #666; font-size: 0.9rem; margin-top: 2rem;">
                         <strong>Order ID:</strong> ${orderId}<br>
                         <strong>Purchase Date:</strong> ${new Date().toLocaleDateString()}<br>
-                        <strong>Download Link:</strong> <a href="${downloadUrl}" style="color: #667eea;">${downloadUrl}</a>
+                        <strong>Status:</strong> Processing
                     </p>
                     
                     <hr style="border: none; border-top: 1px solid #e9ecef; margin: 2rem 0;">
                     
                     <p style="color: #666; font-size: 0.9rem; text-align: center;">
                         If you have any questions, please contact us at 
-                        <a href="mailto:reciperush01@gmail.com" style="color: #667eea;">reciperush01@gmail.com</a>
+                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #667eea;">hello@pawsitivepeace.co.uk</a>
                     </p>
                 </div>
             </div>
@@ -354,7 +317,7 @@ app.post('/create-checkout-session', async (req, res) => {
                     currency: 'gbp',
                     product_data: {
                         name: item.name,
-                        description: 'Digital Recipe Collection',
+                        description: 'The Pupsicle - Dog Toy',
                         images: [item.image],
                     },
                     unit_amount: Math.round(item.price * 100), // Convert to pence
@@ -411,18 +374,14 @@ app.post('/webhook/stripe', express.raw({ type: 'application/json' }), async (re
 
         console.log('📧 Customer details:', { customerEmail, customerName, orderId });
 
-        // Generate download token
-        const downloadToken = generateDownloadToken(customerEmail, orderId);
-        console.log('🔑 Download token generated:', downloadToken.substring(0, 10) + '...');
-
-        // Send e-book delivery email
-        console.log('📤 Attempting to send e-book email...');
-        const emailSent = await sendEbookEmail(customerEmail, customerName, downloadToken, orderId);
+        // Send order confirmation email
+        console.log('📤 Attempting to send order confirmation email...');
+        const emailSent = await sendOrderConfirmationEmail(customerEmail, customerName, orderId);
 
         if (emailSent) {
-            console.log(`✅ Order ${orderId} completed successfully. E-book sent to ${customerEmail}`);
+            console.log(`✅ Order ${orderId} completed successfully. Confirmation email sent to ${customerEmail}`);
         } else {
-            console.error(`❌ Failed to send e-book for order ${orderId}`);
+            console.error(`❌ Failed to send confirmation email for order ${orderId}`);
         }
     }
 
@@ -446,47 +405,13 @@ app.get('/cancel', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/cancel.html'));
 });
 
-// Download endpoint
-app.get('/download/:token', (req, res) => {
-    const token = req.params.token;
-    const tokenData = downloadTokens.get(token);
-
-    if (!tokenData) {
-        return res.status(404).send('Invalid download token.');
-    }
-
-    // Enforce token expiry
-    if (Date.now() > tokenData.expiry) {
-        downloadTokens.delete(token);
-        return res.status(410).send('Download link has expired.');
-    }
-
-    if (tokenData.downloads >= tokenData.maxDownloads) {
-        return res.status(429).send('Maximum download limit reached.');
-    }
-
-    const ebookPath = path.join(__dirname, '../frontend/assets/pdfs/recipe-rush-lean-and-loaded.pdf');
-    res.download(ebookPath, 'RecipeRush-Lean-and-Loaded.pdf', (err) => {
-        if (err) {
-            console.error('Download failed:', err);
-            return res.status(500).send('Failed to download the e-book.');
-        }
-        // Increment on successful transfer
-        tokenData.downloads++;
-        // Optional: cleanup if max reached
-        if (tokenData.downloads >= tokenData.maxDownloads) {
-            downloadTokens.delete(token);
-        }
-        // No further response calls here; response already sent
-    });
-});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({ 
         status: 'healthy', 
         timestamp: new Date().toISOString(),
-        service: 'RecipeRush E-Book Delivery',
+        service: 'Pawsitive Peace Product Delivery',
         environment: process.env.NODE_ENV || 'development',
         port: process.env.PORT || 3000,
         uptime: process.uptime(),
@@ -589,7 +514,7 @@ app.get('/test-email', async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: testEmail,
-            subject: '🧪 RecipeRush Email Test - Simple',
+            subject: '🧪 Pawsitive Peace Email Test - Simple',
             text: `Email Test Successful!\n\nIf you received this email, your Gmail configuration is working correctly.\n\nTime: ${new Date().toISOString()}\n\nThis is a simple text email to test basic functionality.`,
             html: `
                 <h2>Email Test Successful!</h2>
@@ -657,33 +582,26 @@ app.get('/test-webhook', async (req, res) => {
             orderId: mockSession.id 
         });
 
-        // Generate download token with longer expiry (30 days for testing)
-        const downloadToken = generateDownloadToken(mockSession.customer_details.email, mockSession.id);
-        console.log('🔑 Download token generated:', downloadToken.substring(0, 10) + '...');
-
-        // Send e-book delivery email
-        console.log('📤 Attempting to send e-book email...');
-        const emailSent = await sendEbookEmail(
+        // Send order confirmation email
+        console.log('📤 Attempting to send order confirmation email...');
+        const emailSent = await sendOrderConfirmationEmail(
             mockSession.customer_details.email, 
             mockSession.customer_details.name, 
-            downloadToken, 
             mockSession.id
         );
 
         if (emailSent) {
-            console.log(`✅ Test webhook processed successfully. E-book sent to ${mockSession.customer_details.email}`);
+            console.log(`✅ Test webhook processed successfully. Confirmation email sent to ${mockSession.customer_details.email}`);
             res.json({ 
                 success: true, 
                 message: 'Test webhook processed successfully',
                 orderId: mockSession.id,
-                downloadToken: downloadToken,
-                emailSent: true,
-                downloadUrl: `${process.env.BASE_URL}/download/${downloadToken}`
+                emailSent: true
             });
         } else {
-            console.error(`❌ Failed to send e-book for test order ${mockSession.id}`);
+            console.error(`❌ Failed to send confirmation email for test order ${mockSession.id}`);
             res.status(500).json({ 
-                error: 'Failed to send e-book email',
+                error: 'Failed to send confirmation email',
                 orderId: mockSession.id
             });
         }
@@ -697,45 +615,6 @@ app.get('/test-webhook', async (req, res) => {
     }
 });
 
-// Test download endpoint (for debugging, disabled in production by default)
-app.get('/test-download/:token', (req, res) => {
-    // Production security check
-    if (process.env.NODE_ENV === 'production' && !process.env.ENABLE_TEST_ENDPOINTS) {
-        console.log('🚫 Test download endpoint disabled in production');
-        return res.status(404).json({ 
-            error: 'Endpoint not found',
-            message: 'Test endpoints are disabled in production'
-        });
-    }
-
-    const token = req.params.token;
-    console.log('🧪 Testing download with token:', token);
-
-    const tokenData = downloadTokens.get(token);
-    console.log('🔍 Token data found:', !!tokenData);
-
-    if (tokenData) {
-        console.log('📊 Token details:', {
-            email: tokenData.email,
-            orderId: tokenData.orderId,
-            expiry: new Date(tokenData.expiry).toISOString(),
-            downloads: tokenData.downloads,
-            maxDownloads: tokenData.maxDownloads
-        });
-    }
-
-    res.json({
-        token: token,
-        tokenExists: !!tokenData,
-        tokenData: tokenData ? {
-            email: tokenData.email,
-            orderId: tokenData.orderId,
-            expiry: new Date(tokenData.expiry).toISOString(),
-            downloads: tokenData.downloads,
-            maxDownloads: tokenData.maxDownloads
-        } : null
-    });
-});
 
 // Root endpoint - serve the main HTML page
 app.get('/', (req, res) => {
@@ -777,7 +656,7 @@ app.get(Object.keys(legacyRedirects), (req, res) => {
 // API status endpoint
 app.get('/api/status', (req, res) => {
     res.json({
-        message: 'RecipeRush API is running',
+        message: 'Pawsitive Peace API is running',
         status: 'operational',
         timestamp: new Date().toISOString(),
         endpoints: {
@@ -785,8 +664,7 @@ app.get('/api/status', (req, res) => {
             checkout: '/create-checkout-session',
             success: '/success',
             cancel: '/cancel',
-            webhook: '/webhook/stripe',
-            download: '/download/:token'
+            webhook: '/webhook/stripe'
         }
     });
 });
@@ -798,15 +676,15 @@ let server;
 if (process.env.NODE_ENV !== 'test') {
     server = app.listen(PORT, '0.0.0.0', () => {
         if (process.env.NODE_ENV === 'production') {
-            console.log(`🚀 RecipeRush production server running on port ${PORT}`);
-            console.log(`📚 E-book delivery system ready`);
+            console.log(`🚀 Pawsitive Peace production server running on port ${PORT}`);
+            console.log(`📦 Product fulfillment system ready`);
             console.log(`💳 Stripe webhooks enabled`);
             console.log(`📧 Email delivery configured`);
             console.log(`🔒 Production security enabled`);
             console.log(`🌐 Base URL: ${process.env.BASE_URL}`);
         } else {
-            console.log(`🚀 RecipeRush server running on port ${PORT}`);
-            console.log(`📚 E-book delivery system ready`);
+            console.log(`🚀 Pawsitive Peace server running on port ${PORT}`);
+            console.log(`📦 Product fulfillment system ready`);
             console.log(`💳 Stripe webhooks enabled`);
             console.log(`📧 Email delivery configured`);
             console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);

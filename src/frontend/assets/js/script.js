@@ -198,7 +198,7 @@ if (document.readyState === 'loading') {
 }
 
 // Export functions for use in other scripts
-window.recipeRush = {
+window.app = {
     addToCart,
     removeFromCart,
     updateQuantity,

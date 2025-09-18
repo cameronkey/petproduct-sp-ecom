@@ -150,7 +150,7 @@
         // Save cart to localStorage
         saveToStorage() {
             try {
-                localStorage.setItem('recipeRushCart', JSON.stringify(this.items));
+                localStorage.setItem('pawsitivePeaceCart', JSON.stringify(this.items));
             } catch (error) {
                 console.error('❌ Failed to save cart to localStorage:', error);
             }
@@ -159,7 +159,7 @@
         // Load cart from localStorage
         loadFromStorage() {
             try {
-                const savedCart = localStorage.getItem('recipeRushCart');
+                const savedCart = localStorage.getItem('pawsitivePeaceCart');
                 if (savedCart) {
                     this.items = JSON.parse(savedCart);
                 }

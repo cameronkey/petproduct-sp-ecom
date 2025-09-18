@@ -112,7 +112,7 @@ const AppConfig = {
             cartCountMobileNotFound: '⚠️ Mobile cart count element not found',
             cartItemsNotFound: '⚠️ Cart items element not found',
             cartTotalNotFound: '⚠️ Cart total element not found',
-            configurationNotLoaded: 'RecipeRush configuration not loaded. Please refresh the page.',
+            configurationNotLoaded: 'Pawsitive Peace configuration not loaded. Please refresh the page.',
             stripeKeyNotFound: 'Stripe publishable key not found in configuration. Please check server configuration.',
             cartEmpty: 'Your cart is empty'
         },
@@ -161,7 +161,7 @@ const AppConfig = {
     
     // Analytics Configuration
     analytics: {
-        pageTitle: 'RecipeRush Home',
+        pageTitle: 'Pawsitive Peace Home',
         currency: 'GBP'
     },
     
