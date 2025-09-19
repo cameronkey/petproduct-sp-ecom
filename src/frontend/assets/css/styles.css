@@ -916,9 +916,10 @@ small, .small-text {
         height: auto;
         justify-content: stretch;
         order: 2;
-        width: 100%;
+        width: 92vw;
         padding: 0 var(--space-1);
         box-sizing: border-box;
+        overflow: scroll;
     }
     
     .thumbnail {
@@ -926,7 +927,7 @@ small, .small-text {
         height: 60px;
         min-height: 0;
         aspect-ratio: 1;
-        border-radius: var(--radius-lg);
+    border-radius: var(--radius-lg);
         overflow: hidden;
     }
     
@@ -941,6 +942,10 @@ small, .small-text {
     
     .main-image-container {
         order: 1;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
     }
     
     /* Hide desktop tabs on mobile */
@@ -3550,6 +3555,10 @@ small, .small-text {
     .featured {
         /* padding: var(--space-12) 0; */
         padding: 0;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     
     .contact-content {
