@@ -9,10 +9,11 @@ class ImageGallery {
         this.thumbnails = [];
         this.currentIndex = 0;
         this.images = [
-            '../assets/images/recipe-rush-pdp-image-one.jpg',
-            '../assets/images/recipe-rush-pdp-image-two.jpg',
-            '../assets/images/recipe-rush-pdp-image-three.jpg',
-            '../assets/images/recipe-rush-pdp-image-four.jpg'
+            '../assets/images/pp-pdp-image-one.jpg',
+            '../assets/images/pp-pdp-image-two.jpg',
+            '../assets/images/pp-pdp-image-three.jpg',
+            '../assets/images/pp-pdp-image-four.jpg',
+            '../assets/images/pp-pdp-image-five.jpg'
         ];
         
         this.init();
