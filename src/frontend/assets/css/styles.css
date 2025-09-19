@@ -1324,6 +1324,7 @@ small, .small-text {
     position: relative;
     max-width: 100%;
     overflow: hidden;
+    min-height: 160px;
 }
 
 .testimonials-slider {
@@ -1348,6 +1349,7 @@ small, .small-text {
     align-items: flex-start;
     gap: var(--space-4);
     padding: var(--space-4);
+    min-height: 120px;
     /* background: white; */
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -1607,8 +1609,8 @@ small, .small-text {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
     align-items: start;
-    height: 80vh;
-    min-height: 800px;
+    height: auto;
+    /* min-height: 800px; */
     padding-top: var(--space-8);
     padding-bottom: var(--space-8);
 }
@@ -1622,12 +1624,55 @@ small, .small-text {
     overflow: hidden;
 }
 
-.video-testimonials-iframe iframe {
+.video-testimonials-iframe iframe,
+.video-testimonials-iframe img,
+.video-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     border: none;
     border-radius: var(--radius-xl);
 }
+
+.video-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.video-preview {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-xl);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-container.playing .play-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 .video-testimonials-content {
     order: 1;
@@ -1718,12 +1763,55 @@ small, .small-text {
     overflow: hidden;
 }
 
-.how-it-works-iframe iframe {
+.how-it-works-iframe iframe,
+.how-it-works-iframe img,
+.how-it-works-iframe .video-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     border: none;
     border-radius: var(--radius-xl);
 }
+
+.how-it-works-iframe .video-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.how-it-works-iframe .video-preview {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-xl);
+}
+
+.how-it-works-iframe .play-button {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.how-it-works-iframe .play-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.how-it-works-iframe .video-container.playing .play-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 .how-it-works-content {
     order: 2;
@@ -3970,8 +4058,18 @@ small, .small-text {
         padding-bottom: var(--space-4);
     }
     
-    .video-testimonials-iframe iframe {
-        height: 300px;
+    .video-testimonials-iframe iframe,
+    .video-testimonials-iframe img,
+    .video-testimonials-iframe .video-container {
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .video-testimonials-iframe .video-preview {
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
     }
     
     .video-testimonials-header {
@@ -4009,8 +4107,18 @@ small, .small-text {
         order: 2;
     }
     
-    .how-it-works-iframe iframe {
-        height: 300px;
+    .how-it-works-iframe iframe,
+    .how-it-works-iframe img,
+    .how-it-works-iframe .video-container {
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .how-it-works-iframe .video-preview {
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
     }
     
     .how-it-works-title {
