@@ -1037,6 +1037,16 @@ small, .small-text {
     text-align: center;
 }
 
+.pdp-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--gray-600);
+    margin: var(--space-2) 0 var(--space-4) 0;
+    line-height: 1.4;
+    font-family: var(--font-body);
+    text-align: center;
+}
+
 .rating-summary {
     display: flex;
     align-items: center;
