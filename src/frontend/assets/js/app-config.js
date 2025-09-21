@@ -91,7 +91,7 @@ const AppConfig = {
             sales: 'SALES END TODAY',
             order: 'ORDER TODAY',
             customers: 'OVER 10,000 HAPPY CUSTOMERS',
-            trending: 'FACEBOOKS #1 TRENDING PRODUCT',
+            trending: 'MOST POPULAR PRODUCT',
             saleEnds: 'SALE ENDS TODAY',
             satisfiedCustomers: 'OVER 100,000+ SATISFIED CUSTOMERS'
         },

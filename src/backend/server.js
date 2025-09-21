@@ -273,7 +273,7 @@ async function sendOrderConfirmationEmail(customerEmail, customerName, orderId) 
                     
                     <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
                         If you have any questions, please contact us at 
-                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                        <a href="mailto:help@pawsitivepeace.online" style="color: #7FB069; text-decoration: none; font-weight: 500;">help@pawsitivepeace.online</a>
                     </p>
                 </div>
             </div>
@@ -755,7 +755,7 @@ async function sendTrackingEmail(customerEmail, customerName, orderId, trackingN
                     
                     <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
                         Questions about your order? Contact us at 
-                        <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                        <a href="mailto:help@pawsitivepeace.online" style="color: #7FB069; text-decoration: none; font-weight: 500;">help@pawsitivepeace.online</a>
                     </p>
                 </div>
             </div>
@@ -903,7 +903,7 @@ app.get('/preview-tracking-email', (req, res) => {
                 
                 <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
                     Questions about your order? Contact us at 
-                    <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                    <a href="mailto:help@pawsitivepeace.online" style="color: #7FB069; text-decoration: none; font-weight: 500;">help@pawsitivepeace.online</a>
                 </p>
             </div>
         </div>
@@ -974,7 +974,7 @@ app.get('/preview-email', (req, res) => {
                 
                 <p style="color: #6B6B6B; font-size: 0.9rem; text-align: center; font-weight: 400;">
                     If you have any questions, please contact us at 
-                    <a href="mailto:hello@pawsitivepeace.co.uk" style="color: #7FB069; text-decoration: none; font-weight: 500;">hello@pawsitivepeace.co.uk</a>
+                    <a href="mailto:help@pawsitivepeace.online" style="color: #7FB069; text-decoration: none; font-weight: 500;">help@pawsitivepeace.online</a>
                 </p>
             </div>
         </div>

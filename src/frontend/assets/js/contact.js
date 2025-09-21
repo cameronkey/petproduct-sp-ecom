@@ -27,7 +27,7 @@ function initializeContactForm() {
 function initializeEmailJS() {
     try {
         if (typeof emailjs !== 'undefined') {
-            emailjs.init('YOUR_EMAILJS_USER_ID'); // Replace with actual user ID
+            emailjs.init('8N1ptQ1ogjxnsC_1I'); // EmailJS Public Key
         }
     } catch (error) {
         console.error('EmailJS initialization failed:', error);
@@ -69,7 +69,7 @@ async function handleContactSubmit(event) {
         
         // Send email using EmailJS
         if (typeof emailjs !== 'undefined') {
-            await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            await emailjs.send('service_48u5jcp', 'template_okhrf9f', {
                 from_name: data.name,
                 from_email: data.email,
                 subject: data.subject || 'Contact Form Submission',
