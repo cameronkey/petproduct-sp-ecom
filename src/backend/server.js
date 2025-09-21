@@ -34,7 +34,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration (always needed)
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://pawsitivepeace.online', 'https://www.pawsitivepeace.online']
+        ? ['https://pawsitivepeace.online', 'https://www.pawsitivepeace.online', 'https://pawsitivepeace-front-end.onrender.com']
         : true,
     credentials: true
 }));
