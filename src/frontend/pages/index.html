@@ -14,8 +14,9 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop">
     <meta property="og:site_name" content="Pawsitive Peace">
     <link rel="canonical" href="https://pawsitivepeace.co.uk/">
-    <link rel="icon" href="../assets/images/refiperush-favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="../assets/images/refiperush-favicon.png">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
     <link rel="manifest" href="../static/manifest.webmanifest">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,7 +68,7 @@
         "category": "Pet Supplies > Dog Toys > Interactive Toys",
         "offers": {
             "@type": "Offer",
-            "price": "29.00",
+            "price": "17.00",
             "priceCurrency": "GBP",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -108,9 +109,6 @@
             
             <!-- Actions - Right Side -->
             <div class="nav-actions">
-                <button class="btn-user" onclick="openUserMenu()" aria-label="User menu">
-                    <i class="fas fa-user"></i>
-                </button>
                 <button class="btn-cart" onclick="openCart()">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCount">0</span>
@@ -119,9 +117,6 @@
             
             <!-- Mobile Navigation -->
             <div class="mobile-nav-container">
-                <button class="btn-user-mobile" onclick="openUserMenu()" aria-label="User menu">
-                    <i class="fas fa-user"></i>
-                </button>
                 <button class="btn-cart-mobile-header" onclick="openCart()">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCountMobile">0</span>
@@ -242,37 +237,37 @@
                         <h3 class="bundle-title">Choose Your Bundle</h3>
                         <div class="bundle-options">
                             <label class="bundle-option">
-                                <input type="radio" name="bundle" value="pupsicle-toy" data-price="29" data-original="">
+                                <input type="radio" name="bundle" value="pupsicle-toy" data-price="17" data-original="28">
                                 <span class="tick"><i class="fa fa-paw"></i></span>
                                 <div class="bundle-content">
                                     <span class="bundle-text">Pupsicle Toy</span>
                                     <div class="bundle-prices">
-                                        <span class="bundle-price">£29</span>
-                                        <span class="bundle-original"></span>
+                                        <span class="bundle-price">£17</span>
+                                        <span class="bundle-original">£28</span>
                                     </div>
                                 </div>
                             </label>
                             
                             <label class="bundle-option popular selected">
-                                <input type="radio" name="bundle" value="complete" data-price="45" data-original="52" checked>
+                                <input type="radio" name="bundle" value="complete" data-price="20" data-original="33" checked>
                                 <span class="tick"><i class="fa fa-paw"></i></span>
                                 <div class="bundle-content">
                                     <span class="bundle-text">Complete Bundle</span>
                                     <div class="bundle-prices">
-                                        <span class="bundle-price">£45</span>
-                                        <span class="bundle-original">£52</span>
+                                        <span class="bundle-price">£20</span>
+                                        <span class="bundle-original">£33</span>
                                     </div>
                                 </div>
                             </label>
                             
                             <label class="bundle-option">
-                                <input type="radio" name="bundle" value="treat-tray" data-price="23" data-original="">
+                                <input type="radio" name="bundle" value="treat-tray" data-price="10" data-original="17">
                                 <span class="tick"><i class="fa fa-paw"></i></span>
                                 <div class="bundle-content">
                                     <span class="bundle-text">Treat Tray</span>
                                     <div class="bundle-prices">
-                                        <span class="bundle-price">£23</span>
-                                        <span class="bundle-original"></span>
+                                        <span class="bundle-price">£10</span>
+                                        <span class="bundle-original">£17</span>
                                     </div>
                                 </div>
                             </label>
@@ -573,11 +568,11 @@
                     <div class="cart-product">
                         <img src="../assets/images/pp-pdp-image-one.jpg" alt="Interactive dog toy dishwasher safe freezable pupsicle with treat tray for mental stimulation" class="cart-product-image">
                         <div class="cart-product-details">
-                            <h4 class="cart-product-name">Centy – Liposomal NAD</h4>
+                            <h4 class="cart-product-name">Pupsicle Complete Bundle</h4>
                             <div class="cart-product-pricing">
-                                <span class="cart-current-price">£34.99</span>
-                                <span class="cart-original-price">£69.98</span>
-                                <span class="cart-savings">Save 50%</span>
+                                <span class="cart-current-price">£20</span>
+                                <span class="cart-original-price">£33</span>
+                                <span class="cart-savings">Save 40%</span>
                             </div>
                         </div>
                     </div>
@@ -608,7 +603,7 @@
         <!-- Waves end -->
         <!-- Content after waves -->
         <div class="wave-content">
-            <h2>Safe Interactive Dog Toy - Third Party Tested for All Dog Breeds</h2>
+            <h2>Safe Interactive Dog Toy<br>Third Party Tested for All Dog Breeds</h2>
             <p>Our Pupsicle undergoes rigorous third-party testing to ensure maximum durability and safety for even the toughest chewers. Each production batch is independently verified for non-toxic materials, structural integrity, and dishwasher safety standards. Trust in our commitment to delivering the safest, most effective dog enrichment tool backed by real-world testing with over 50 different breeds.</p>
         </div>
     </section>
@@ -620,7 +615,7 @@
                 <h2 class="results-left-header">Proven Results: Interactive Dog Toy Transforms Behavior in Days</h2>
                 <span class="results-left-subtitle">REAL PEOPLE...REAL RESULTS</span>
                 <div class="results-left-image">
-                    <img src="../assets/images/pp-pdp-image-one.jpg" alt="Interactive dog toy dishwasher safe freezable pupsicle with treat tray for mental stimulation" loading="lazy">
+                    <img src="../assets/images/pp-pdp-image-two.jpg" alt="Interactive dog toy dishwasher safe freezable pupsicle with treat tray for mental stimulation" loading="lazy">
                 </div>
             </div>
             <div class="results-right">
@@ -697,16 +692,6 @@
                     </button>
                     <div class="faq-answer">
                         <p>Three game-changing differences: 1) The Pupsicle opens completely for effortless, dishwasher-safe cleaning (no more bottle brushes!), 2) The wide opening makes filling simple and mess-free, 3) The popsicle shape provides longer-lasting frozen engagement. You'll spend 2 minutes prepping instead of 20 minutes cleaning.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <p>What size should I get for my dog?</p>
-                        <i class="fas fa-chevron-right faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Small Pupsicle (2.9" diameter): Dogs under 25 lbs. Large Pupsicle (3.6" diameter): Dogs 25-70 lbs. XL Pupsicle (4.8" diameter): Dogs over 70 lbs. The key is matching the center hole (where they access treats) to your dog's jaw width. When in doubt, size up for safety and longer engagement.</p>
                     </div>
                 </div>
                 

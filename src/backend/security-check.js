@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Security Check Script for RecipeRush
+ * Security Check Script for Pawsitive Peace
  * 
  * This script scans the frontend source code for any hardcoded Stripe keys
  * to ensure no security vulnerabilities exist before deployment.
@@ -109,7 +109,7 @@ function scanDirectory(dirPath, depth = 0) {
 }
 
 function main() {
-    console.log('🔒 RecipeRush Security Check');
+    console.log('🔒 Pawsitive Peace Security Check');
     console.log('=============================\n');
     console.log('Scanning for hardcoded Stripe keys and security issues...\n');
     

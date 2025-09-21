@@ -1,7 +1,7 @@
 {
-  "name": "reciperush-backend",
+  "name": "pawsitivepeace-backend",
   "version": "1.0.0",
-  "description": "Backend server for RecipeRush e-commerce site with e-book delivery system",
+  "description": "Backend server for Pawsitive Peace e-commerce site with dog toy delivery system",
   "main": "src/backend/server.js",
   "scripts": {
     "start": "node src/backend/server.js",
@@ -47,6 +47,6 @@
     "delivery",
     "recipes"
   ],
-  "author": "RecipeRush",
+  "author": "Pawsitive Peace",
   "license": "MIT"
 }

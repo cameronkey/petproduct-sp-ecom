@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../server');
 
-describe('RecipeRush Server', () => {
+describe('Pawsitive Peace Server', () => {
   describe('Health Check Endpoint', () => {
     test('GET /health should return 200 and health status', async () => {
       const response = await request(app)
@@ -9,7 +9,7 @@ describe('RecipeRush Server', () => {
         .expect(200);
 
       expect(response.body).toHaveProperty('status', 'healthy');
-      expect(response.body).toHaveProperty('service', 'RecipeRush E-Book Delivery');
+      expect(response.body).toHaveProperty('service', 'Pawsitive Peace Dog Toy Delivery');
       expect(response.body).toHaveProperty('timestamp');
       expect(response.body).toHaveProperty('environment');
       expect(response.body).toHaveProperty('port');

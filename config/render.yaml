@@ -1,7 +1,7 @@
 services:
   # Backend API Service
   - type: web
-    name: reciperush-backend
+    name: pawsitivepeace-backend
     env: node
     plan: starter
     buildCommand: npm install
@@ -28,7 +28,7 @@ services:
 
   # Frontend Static Site
   - type: web
-    name: reciperush-frontend
+    name: pawsitivepeace-frontend
     env: static
     plan: starter
     buildCommand: ./build-production.sh

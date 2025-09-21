@@ -37,6 +37,10 @@
     --dusty-rose-light: #EDC4C7;
     --dusty-rose-dark: #E3A4A9;
     
+    /* Soft Coral */
+    --soft-coral: #FF8A80;
+    --soft-coral-rgb: 255, 138, 128;
+    
     /* Legacy color mappings for compatibility */
     --primary-600: var(--tranquil-sage);
     --primary-600-rgb: var(--tranquil-sage-rgb);
@@ -513,7 +517,7 @@ small, .small-text {
     letter-spacing: 0.05em;
     white-space: nowrap;
     color: var(--soft-cream);
-    animation: scrollRight 30s linear infinite;
+    animation: scrollRight 45s linear infinite;
     display: inline-block;
     padding-right: 2rem;
     position: absolute;
@@ -541,7 +545,7 @@ small, .small-text {
     .banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRight 30s linear infinite; /* Same speed as desktop */
+        animation: scrollRight 45s linear infinite; /* Same speed as desktop */
     }
 }
 
@@ -553,7 +557,7 @@ small, .small-text {
     .banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRight 30s linear infinite; /* Same speed as desktop */
+        animation: scrollRight 45s linear infinite; /* Same speed as desktop */
     }
 }
 
@@ -612,7 +616,7 @@ small, .small-text {
     /* padding: var(--space-10) 0; */
     background: var(--soft-cream);
     margin-top: var(--space-6);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .section-title {
@@ -1463,7 +1467,8 @@ small, .small-text {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
-    animation: scrollRightSaleEnds 30s linear infinite;
+    color: var(--soft-cream);
+    animation: scrollRightSaleEnds 45s linear infinite;
     display: inline-block;
     padding-right: 2rem;
     position: absolute;
@@ -1494,7 +1499,8 @@ small, .small-text {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
-    animation: scrollRightBottom 30s linear infinite;
+    color: var(--soft-cream);
+    animation: scrollRightBottom 45s linear infinite;
     display: inline-block;
     padding-right: 2rem;
     position: absolute;
@@ -1526,7 +1532,7 @@ small, .small-text {
 .sale-ending-section {
     /* padding: 0.8rem 0; */
     background: var(--soft-cream);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 /* Lazy Loading Sections */
@@ -1598,7 +1604,7 @@ small, .small-text {
 .video-testimonials-section {
     background: var(--primary-600);
     /* padding: 1rem 0; */
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .video-testimonials-container {
@@ -1695,7 +1701,7 @@ small, .small-text {
 .video-testimonials-subtitle {
     font-size: var(--text-xs);
     font-weight: 600;
-    color: var(--gray-400);
+    color: var(--soft-cream);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -1737,7 +1743,7 @@ small, .small-text {
 .how-it-works-section {
     background: var(--soft-cream);
     /* padding: 0.8rem 0; */
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .how-it-works-container {
@@ -1909,7 +1915,7 @@ small, .small-text {
 /* Quick Add Section */
 .quick-add-section {
     /* padding: 0.8rem 0; */
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
     background: var(--soft-cream);
     overflow: hidden;
 }
@@ -2403,6 +2409,10 @@ small, .small-text {
     padding-top: var(--space-6);
     text-align: center;
     color: var(--gray-500);
+}
+
+.footer-bottom p {
+    color: var(--gray-400);
 }
 
 /* Modal System - Modern and Accessible */
@@ -3959,7 +3969,7 @@ small, .small-text {
     .sale-ends-banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRightSaleEnds 30s linear infinite;
+        animation: scrollRightSaleEnds 45s linear infinite;
         width: 200%;
     }
 }
@@ -3973,7 +3983,7 @@ small, .small-text {
     .bottom-banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRightBottom 30s linear infinite; /* Same speed as desktop */
+        animation: scrollRightBottom 45s linear infinite; /* Same speed as desktop */
     }
 }
 
@@ -3985,7 +3995,7 @@ small, .small-text {
     .sale-ends-banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRightSaleEnds 30s linear infinite;
+        animation: scrollRightSaleEnds 45s linear infinite;
         width: 200%;
     }
     
@@ -3996,7 +4006,7 @@ small, .small-text {
     .bottom-banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRightBottom 30s linear infinite; /* Same speed as desktop */
+        animation: scrollRightBottom 45s linear infinite; /* Same speed as desktop */
     }
 }
 
@@ -4378,7 +4388,7 @@ small, .small-text {
 .results-section {
     /* padding: 1rem 0; */
     background: var(--soft-cream);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .results-container {
@@ -4584,7 +4594,7 @@ small, .small-text {
 .faq-section {
     /* padding: var(--space-8) 0; */
     background: var(--soft-cream);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-12);
 }
 
 .faq-container {

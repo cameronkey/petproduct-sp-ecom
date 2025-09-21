@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# RecipeRush Production Build Script
+# Pawsitive Peace Production Build Script
 # This script prepares the frontend for production deployment
 
-echo "🚀 Building RecipeRush for production..."
+echo "🚀 Building Pawsitive Peace for production..."
 
 # Create production directory
 PROD_DIR="production"
@@ -51,9 +51,9 @@ sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' js/config
 echo "📦 Creating production package.json..."
 cat > package.json << 'EOF'
 {
-  "name": "reciperush-frontend",
+  "name": "pawsitivepeace-frontend",
   "version": "1.0.0",
-  "description": "RecipeRush Frontend - Production Build",
+  "description": "Pawsitive Peace Frontend - Production Build",
   "main": "index.html",
   "scripts": {
     "start": "echo 'Frontend is static - no start needed'"
@@ -68,7 +68,7 @@ cat > package.json << 'EOF'
     "recipes",
     "frontend"
   ],
-  "author": "RecipeRush",
+  "author": "Pawsitive Peace",
   "license": "MIT"
 }
 EOF
@@ -76,9 +76,9 @@ EOF
 # Create production README
 echo "📖 Creating production README..."
 cat > README.md << 'EOF'
-# RecipeRush Frontend - Production Build
+# Pawsitive Peace Frontend - Production Build
 
-This is the production-ready frontend for RecipeRush.
+This is the production-ready frontend for Pawsitive Peace.
 
 ## Files Included
 - HTML pages (index.html, catalog.html, contact.html)

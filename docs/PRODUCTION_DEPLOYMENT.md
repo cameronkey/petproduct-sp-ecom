@@ -1,4 +1,4 @@
-# RecipeRush Production Deployment Guide
+# Pawsitive Peace Production Deployment Guide
 
 ## 🚀 Pre-Deployment Checklist
 
@@ -12,7 +12,7 @@
 - `STRIPE_WEBHOOK_SECRET`: Your live Stripe webhook secret (starts with `whsec_`)
 
 #### Email Configuration
-- `EMAIL_USER`: `reciperush01@gmail.com`
+- `EMAIL_USER`: `help@pawsitivepeace.online`
 - `EMAIL_PASS`: Your Gmail App Password (16 characters)
 
 #### Security
@@ -32,7 +32,7 @@ Replace `pk_live_your_actual_live_publishable_key_here` with your actual live ke
 ### 3. Stripe Production Setup
 
 1. **Switch to Live Mode** in your Stripe dashboard
-2. **Update Webhook Endpoint** to: `https://reciperush-backend.onrender.com/webhook/stripe`
+2. **Update Webhook Endpoint** to: `https://pawsitivepeace-backend.onrender.com/webhook/stripe`
 3. **Copy Live Keys** from Stripe dashboard
 4. **Test Live Payment** with a small amount
 
@@ -62,18 +62,18 @@ Add all environment variables from the checklist above in Render dashboard.
 
 ### 1. Health Check
 ```bash
-curl https://reciperush-backend.onrender.com/health
+curl https://pawsitivepeace-backend.onrender.com/health
 ```
 
 ### 2. Test Email System
 ```bash
-curl https://reciperush-backend.onrender.com/test-email
+curl https://pawsitivepeace-backend.onrender.com/test-email
 ```
 **⚠️ PRODUCTION SECURITY**: This endpoint must be disabled or protected in production. Recommended action: Remove the route in production config or gate behind environment-variable-enabled feature flag.
 
 ### 3. Test Webhook
 ```bash
-curl https://reciperush-backend.onrender.com/test-webhook
+curl https://pawsitivepeace-backend.onrender.com/test-webhook
 ```
 **⚠️ PRODUCTION SECURITY**: This endpoint must be disabled or protected in production. Recommended action: Remove the route in production config or enable authentication middleware.
 
@@ -130,7 +130,7 @@ curl https://reciperush-backend.onrender.com/test-webhook
 - **Technical Issues**: Check server logs and Stripe dashboard
 - **Payment Issues**: Contact Stripe support
 - **Email Issues**: Check Gmail account settings
-- **General Support**: reciperush01@gmail.com
+- **General Support**: help@pawsitivepeace.online
 
 ## 🔄 Updates and Maintenance
 

@@ -20,10 +20,10 @@ function addToCart() {
         product = {
             id: 'complete',
             name: 'Complete Bundle',
-            price: 45,
-            originalPrice: 52,
+            price: 20,
+            originalPrice: 33,
             quantity: quantity,
-            image: '../assets/images/recipe-rush-pdp-image-one.jpg'
+            image: '../assets/images/pp-pdp-image-one.jpg'
         };
     }
 

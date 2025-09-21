@@ -1,7 +1,7 @@
-# 🚀 RecipeRush Render Deployment Guide
+# 🚀 Pawsitive Peace Render Deployment Guide
 
 ## Overview
-This guide will help you deploy both the frontend and backend of RecipeRush on Render, a modern cloud platform that's perfect for Node.js applications.
+This guide will help you deploy both the frontend and backend of Pawsitive Peace on Render, a modern cloud platform that's perfect for Node.js applications.
 
 ## 📋 Prerequisites
 - [Render account](https://render.com) (free tier available)
@@ -53,7 +53,7 @@ git push origin main
    EMAIL_PASS=your_gmail_app_password
    JWT_SECRET=your_random_jwt_secret
    SESSION_SECRET=your_random_session_secret
-   BASE_URL=https://reciperush-backend.onrender.com
+   BASE_URL=https://pawsitivepeace-backend.onrender.com
    ```
 
 5. **Deploy**
@@ -85,7 +85,7 @@ git push origin main
 
 2. **Add Endpoint**
    ```
-   URL: https://reciperush-backend.onrender.com/webhook/stripe
+   URL: https://pawsitivepeace-backend.onrender.com/webhook/stripe
    Events: checkout.session.completed
    ```
 
@@ -97,7 +97,7 @@ git push origin main
 
 1. **Backend Health Check**
    ```
-   https://reciperush-backend.onrender.com/health
+   https://pawsitivepeace-backend.onrender.com/health
    ```
 
 2. **Frontend Access**
@@ -122,7 +122,7 @@ git push origin main
 | `EMAIL_PASS` | Gmail app password | `abcd efgh ijkl mnop` |
 | `JWT_SECRET` | JWT signing secret | `random_string_64_chars` |
 | `SESSION_SECRET` | Session encryption | `random_string_64_chars` |
-| `BASE_URL` | Backend service URL | `https://reciperush-backend.onrender.com` |
+| `BASE_URL` | Backend service URL | `https://pawsitivepeace-backend.onrender.com` |
 
 ## 🚨 Important Notes
 
@@ -189,7 +189,7 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 - Support: Available on paid plans
 
 ## 🎉 Success!
-Once deployed, your RecipeRush application will be:
+Once deployed, your Pawsitive Peace application will be:
 - ✅ Accessible worldwide
 - ✅ Automatically scaled
 - ✅ HTTPS secured

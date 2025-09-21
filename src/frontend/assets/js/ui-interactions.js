@@ -65,16 +65,6 @@ function closeMobileMenu() {
     document.body.style.overflow = 'auto';
 }
 
-// User Menu Functions
-function openUserMenu() {
-    // Placeholder for future user menu functionality
-    console.log('User menu clicked - functionality to be implemented');
-    // Future implementation will include:
-    // - Login/logout functionality
-    // - User account management
-    // - Order history
-    // - Profile settings
-}
 
 // FAQ Accordion Functions
 function toggleFaq(button) {
@@ -189,7 +179,6 @@ function setupEventListeners() {
 window.toggleMobileMenu = toggleMobileMenu;
 window.openMobileMenu = openMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
-window.openUserMenu = openUserMenu;
 window.toggleFaq = toggleFaq;
 window.changeImage = changeImage;
 window.increaseQuantity = increaseQuantity;

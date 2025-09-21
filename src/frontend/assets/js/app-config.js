@@ -77,7 +77,7 @@ const AppConfig = {
         defaultDuration: 2000,
         
         // Banner animation
-        bannerRepeatCount: 20,
+        bannerRepeatCount: 4,
         
         // Progress ring animation
         progressRingFPS: 60,
@@ -90,10 +90,10 @@ const AppConfig = {
         banners: {
             sales: 'SALES END TODAY',
             order: 'ORDER TODAY',
-            customers: 'OVER 10,000 HAPPY CUSTOMERS',
-            trending: 'MOST POPULAR PRODUCT',
-            saleEnds: 'SALE ENDS TODAY',
-            satisfiedCustomers: 'OVER 100,000+ SATISFIED CUSTOMERS'
+            customers: '30-60 MINUTE ENGAGEMENT',
+            trending: 'OVER 1,200 VERIFIED REVIEWS',
+            saleEnds: 'DISHWASHER SAFE DESIGN',
+            satisfiedCustomers: 'NO MORE CLEANING NIGHTMARES'
         },
         
         // Notification icons
@@ -132,7 +132,7 @@ const AppConfig = {
     animation: {
         // Banner animation
         bannerSpacing: '2rem',
-        bannerRepeatCount: 20,
+        bannerRepeatCount: 13,
         
         // Progress ring animation
         circumference: 226.2,
@@ -152,7 +152,7 @@ const AppConfig = {
         idPrefix: 'centy-liposomal-nad-bundle-',
         
         // Product image path
-        imagePath: '../assets/images/recipe-rush-pdp-image-one.jpg',
+        imagePath: '../assets/images/pp-pdp-image-one.jpg',
         
         // Product display name prefix
         namePrefix: 'Centy – Liposomal NAD (',

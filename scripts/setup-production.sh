@@ -4,7 +4,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-echo "🚀 RecipeRush Production Environment Setup"
+echo "🚀 Pawsitive Peace Production Environment Setup"
 echo "=========================================="
 echo ""
 

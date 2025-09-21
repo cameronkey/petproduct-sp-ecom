@@ -14,6 +14,6 @@ Disallow: /package.json
 Disallow: /package-lock.json
 
 # Sitemap location
-Sitemap: https://reciperush.co.uk/sitemap.xml
+Sitemap: https://pawsitivepeace.online/sitemap.xml
 
 

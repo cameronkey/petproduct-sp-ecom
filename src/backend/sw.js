@@ -1,5 +1,5 @@
 // Service Worker for performance and offline support
-const CACHE_NAME = 'reciperush-v1';
+const CACHE_NAME = 'pawsitivepeace-v1';
 const urlsToCache = [
     '/',
     '/index.html',

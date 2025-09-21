@@ -220,6 +220,5 @@ window.increaseQuantity = increaseQuantity;
 window.decreaseQuantity = decreaseQuantity;
 window.showCheckoutForm = showCheckoutForm;
 window.closeCheckout = closeCheckout;
-window.openUserMenu = openUserMenu;
 window.initBundleSelection = initBundleSelection;
 window.updateProductData = updateProductData;

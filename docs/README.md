@@ -1,4 +1,4 @@
-# RecipeRush - E-commerce Recipe Platform
+# Pawsitive Peace - E-commerce Dog Toy Platform
 
 A secure, production-ready e-commerce platform for selling digital recipe collections and cookbooks.
 
@@ -45,7 +45,7 @@ node -e "console.log('SESSION_SECRET:', require('crypto').randomBytes(64).toStri
 
 ## 🏗️ Project Overview
 
-RecipeRush is a full-stack e-commerce application built with:
+Pawsitive Peace is a full-stack e-commerce application built with:
 - **Backend**: Node.js, Express.js
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
 - **Payment**: Stripe Checkout

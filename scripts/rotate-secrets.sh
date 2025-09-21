@@ -10,10 +10,10 @@ fi
 # Restrict default permissions for any files we create
 umask 077
 
-# RecipeRush Secret Rotation Script
+# Pawsitive Peace Secret Rotation Script
 # Use this script to generate new secrets after the security incident
 
-echo "🔐 RecipeRush Secret Rotation Script"
+echo "🔐 Pawsitive Peace Secret Rotation Script"
 echo "====================================="
 echo ""
 echo "🚨 SECURITY ALERT: JWT_SECRET and SESSION_SECRET were exposed in version control"
@@ -52,7 +52,7 @@ echo ""
 
 # Save to a temporary file for easy copying
 cat > /tmp/new-secrets.txt << EOF
-# RecipeRush New Secrets - Generated $(date)
+# Pawsitive Peace New Secrets - Generated $(date)
 # ⚠️  SECURITY: Delete this file after use!
 
 JWT_SECRET=${JWT_SECRET}

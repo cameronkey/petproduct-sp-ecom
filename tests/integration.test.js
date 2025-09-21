@@ -58,7 +58,7 @@ afterAll(() => {
   }
 });
 
-describe('RecipeRush Server Integration Tests', () => {
+describe('Pawsitive Peace Server Integration Tests', () => {
   describe('Health Endpoint', () => {
     test('GET /health should return server status', async () => {
       const response = await request(app)
