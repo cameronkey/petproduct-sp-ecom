@@ -153,6 +153,7 @@ async function processPayment(firstName, lastName, email) {
         
         // Prepare cart items for Stripe
         const items = cart.map(item => ({
+            id: item.id,
             name: item.name,
             price: item.price,
             quantity: item.quantity,
