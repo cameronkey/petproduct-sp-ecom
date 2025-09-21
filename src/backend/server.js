@@ -37,7 +37,8 @@ app.use(cors({
         ? [
             'https://pawsitivepeace.online', 
             'https://www.pawsitivepeace.online', 
-            'https://pawsitivepeace-front-end.onrender.com'
+            'https://pawsitivepeace-front-end.onrender.com',
+            'https://pawsitivepeace-frontend.onrender.com'
           ]
         : true,
     credentials: true,

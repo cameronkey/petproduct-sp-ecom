@@ -10,7 +10,7 @@ function addToCart() {
     // Use current product data if available, otherwise fallback to default
     let product;
     
-    if (window.currentProduct) {
+    if (window.currentProduct && window.currentProduct.id) {
         product = {
             ...window.currentProduct,
             quantity: quantity
