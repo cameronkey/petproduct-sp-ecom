@@ -10,9 +10,9 @@ PROD_DIR="production"
 rm -rf "$PROD_DIR"
 mkdir -p "$PROD_DIR"
 
-# Copy all files to production directory
-echo "📁 Copying files to production directory..."
-cp -r * "$PROD_DIR/"
+# Copy frontend files to production directory
+echo "📁 Copying frontend files to production directory..."
+cp -r src/frontend/* "$PROD_DIR/"
 
 # Remove development files and directories
 echo "🧹 Removing development files..."
@@ -29,23 +29,31 @@ rm -f security-check.js
 rm -f build-production.sh
 rm -f .renderignore
 
+# Remove any backend files that might have been copied
+rm -rf src/backend/
+rm -rf src/frontend/
+rm -rf config/
+rm -rf docs/
+rm -rf scripts/
+rm -rf tests/
+
 # Remove console.log statements from JavaScript files (keeping essential ones)
 echo "🔇 Removing unnecessary console.log statements..."
 
 # Remove console.log from script.js (keep essential checkout CTA logs)
-sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' script.js
-sed -i '' 's/console\.log("🛒 [^"]*");/\/\/ Removed for production/g' script.js
-sed -i '' 's/console\.log("🔍 [^"]*");/\/\/ Removed for production/g' script.js
+sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' assets/js/script.js
+sed -i '' 's/console\.log("🛒 [^"]*");/\/\/ Removed for production/g' assets/js/script.js
+sed -i '' 's/console\.log("🔍 [^"]*");/\/\/ Removed for production/g' assets/js/script.js
 
 # Remove console.log from contact.js (keep essential checkout CTA logs)
-sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' contact.js
-sed -i '' 's/console\.log("🔄 [^"]*");/\/\/ Removed for production/g' contact.js
+sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' assets/js/contact.js
+sed -i '' 's/console\.log("🔄 [^"]*");/\/\/ Removed for production/g' assets/js/contact.js
 
 # Remove console.log from catalog.js (keep essential checkout CTA logs)
-sed -i '' 's/console\.log("[^"]*");/\/\/ Removed for production/g' catalog.js
+sed -i '' 's/console\.log("[^"]*");/\/\/ Removed for production/g' assets/js/catalog.js
 
 # Remove console.log from config-loader.js (keep essential error logs)
-sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' js/config-loader.js
+sed -i '' 's/console\.log("✅ [^"]*");/\/\/ Removed for production/g' assets/js/config-loader.js
 
 # Create production package.json (remove dev dependencies)
 echo "📦 Creating production package.json..."
