@@ -52,7 +52,7 @@
             
             // Only load cart-manager.js if not already loaded
             if (!window.cartManagerLoaded) {
-                await loadScript('js/cart-manager.js');
+                await loadScript('/assets/js/cart-manager.js');
                 window.cartManagerLoaded = true;
             }
             
