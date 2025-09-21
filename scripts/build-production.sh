@@ -12,7 +12,18 @@ mkdir -p "$PROD_DIR"
 
 # Copy frontend files to production directory
 echo "📁 Copying frontend files to production directory..."
-cp -r src/frontend/* "$PROD_DIR/"
+
+# Copy pages to root level
+echo "📄 Copying HTML pages to root level..."
+cp src/frontend/pages/*.html "$PROD_DIR/"
+
+# Copy assets directory
+echo "🎨 Copying assets directory..."
+cp -r src/frontend/assets "$PROD_DIR/"
+
+# Copy static directory
+echo "📋 Copying static directory..."
+cp -r src/frontend/static "$PROD_DIR/"
 
 # Remove development files and directories
 echo "🧹 Removing development files..."
@@ -30,8 +41,7 @@ rm -f build-production.sh
 rm -f .renderignore
 
 # Remove any backend files that might have been copied
-rm -rf src/backend/
-rm -rf src/frontend/
+rm -rf src/
 rm -rf config/
 rm -rf docs/
 rm -rf scripts/
