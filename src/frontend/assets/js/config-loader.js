@@ -11,7 +11,7 @@
         try {
             // Determine the base URL based on environment
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const baseUrl = isLocal ? 'http://localhost:3000' : 'https://recipe-rush.onrender.com';
+            const baseUrl = isLocal ? 'http://localhost:3000' : 'https://pawsitivepeace-backend.onrender.com';
             const configUrl = `${baseUrl}/api/config`;
             
             console.log(`🔧 Loading configuration from: ${configUrl}`);
@@ -21,7 +21,7 @@
                 throw new Error(`Failed to load configuration: ${response.status}`);
             }
             const config = await response.json();
-            window.RECIPE_RUSH_CONFIG = Object.freeze(config);
+            window.PAWSITIVE_PEACE_CONFIG = Object.freeze(config);
             
             console.log('✅ Configuration loaded successfully');
             

@@ -34,7 +34,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration (always needed)
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk']
+        ? ['https://pawsitivepeace.online', 'https://www.pawsitivepeace.online']
         : true,
     credentials: true
 }));
@@ -339,21 +339,31 @@ app.post('/create-checkout-session', async (req, res) => {
 
         console.log('Stripe key found:', process.env.STRIPE_SECRET_KEY.substring(0, 20) + '...');
 
+        // Map product IDs to Stripe products
+        const productIdMap = {
+            'pupsicle-toy': 'prod_T61PeSh2lpnXv8',           // Pupsicle Toy
+            'complete': 'prod_T61PuYB9Ggmf1j',               // Complete Bundle
+            'treat-tray': 'prod_T61QCneXBDzWmc'              // Treat Tray
+        };
+
         // Create Stripe Checkout Session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            line_items: items.map(item => ({
-                price_data: {
-                    currency: 'gbp',
-                    product_data: {
-                        name: item.name,
-                        description: 'The Pupsicle - Dog Toy',
-                        images: [item.image],
+            line_items: items.map(item => {
+                const stripeProductId = productIdMap[item.id];
+                if (!stripeProductId) {
+                    throw new Error(`Unknown product ID: ${item.id}`);
+                }
+                
+                return {
+                    price_data: {
+                        currency: 'gbp',
+                        product: stripeProductId,
+                        unit_amount: Math.round(item.price * 100), // Convert to pence
                     },
-                    unit_amount: Math.round(item.price * 100), // Convert to pence
-                },
-                quantity: item.quantity,
-            })),
+                    quantity: item.quantity,
+                };
+            }),
             mode: 'payment',
             success_url: `${process.env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.BASE_URL}/cancel`,

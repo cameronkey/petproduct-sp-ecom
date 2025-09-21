@@ -136,11 +136,11 @@ function showNotification(message, type = 'info', duration = AppConfig.timing.de
 
 // Configuration validation function
 function validateConfiguration() {
-    if (!window.RECIPE_RUSH_CONFIG) {
+    if (!window.PAWSITIVE_PEACE_CONFIG) {
         throw new Error(AppConfig.text.errors.configurationNotLoaded);
     }
 
-    if (!window.RECIPE_RUSH_CONFIG.stripe || !window.RECIPE_RUSH_CONFIG.stripe.publishableKey) {
+    if (!window.PAWSITIVE_PEACE_CONFIG.stripe || !window.PAWSITIVE_PEACE_CONFIG.stripe.publishableKey) {
         throw new Error(AppConfig.text.errors.stripeKeyNotFound);
     }
 

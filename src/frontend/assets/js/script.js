@@ -80,7 +80,7 @@ function initializeCoreFeatures() {
 // Setup configuration validation
 function setupConfigurationValidation() {
     // Wait for configuration to be loaded before validating
-    if (window.RECIPE_RUSH_CONFIG) {
+    if (window.PAWSITIVE_PEACE_CONFIG) {
         validateConfiguration();
     } else {
         // Listen for configuration ready event from config-loader.js
