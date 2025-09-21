@@ -36,7 +36,7 @@ function initQuickAddCart() {
 // Add single product to cart
 function addSingleToCart() {
     const product = {
-        id: 'pupsicle-complete-bundle',
+        id: 'complete',
         name: 'Pupsicle Complete Bundle',
         price: 20,
         originalPrice: 33,
