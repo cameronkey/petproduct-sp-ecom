@@ -1650,6 +1650,20 @@ small, .small-text {
     height: auto;
     display: block;
     border-radius: var(--radius-xl);
+    background: var(--gray-100);
+}
+
+@media (max-width: 768px) {
+    .video-preview {
+        min-height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .video-preview[poster] {
+        background-image: url('/assets/images/pp-pdp-image-one.jpg');
+    }
 }
 
 .play-button {
@@ -4077,6 +4091,13 @@ small, .small-text {
         height: 50vh;
         object-fit: cover;
         object-position: center;
+        background: var(--gray-100);
+    }
+    
+    .video-testimonials-iframe .video-preview[poster] {
+        background-image: attr(poster);
+        background-size: cover;
+        background-position: center;
     }
     
     .video-testimonials-header {
@@ -4126,6 +4147,13 @@ small, .small-text {
         height: 50vh;
         object-fit: cover;
         object-position: center;
+        background: var(--gray-100);
+    }
+    
+    .how-it-works-iframe .video-preview[poster] {
+        background-image: attr(poster);
+        background-size: cover;
+        background-position: center;
     }
     
     .how-it-works-title {
