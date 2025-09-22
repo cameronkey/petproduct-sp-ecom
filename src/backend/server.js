@@ -37,8 +37,7 @@ app.use(cors({
         ? [
             'https://pawsitivepeace.online', 
             'https://www.pawsitivepeace.online', 
-            'https://pawsitivepeace-front-end.onrender.com',
-            'https://pawsitivepeace-frontend.onrender.com'
+            'https://pawsitive-peace-back-end.onrender.com'
           ]
         : true,
     credentials: true,
@@ -76,7 +75,11 @@ if (process.env.NODE_ENV === 'production') {
     
     // Explicit CORS headers to ensure proper response
     app.use((req, res, next) => {
-        const allowedOrigins = ['https://pawsitivepeace.co.uk', 'https://www.pawsitivepeace.co.uk'];
+        const allowedOrigins = [
+            'https://pawsitivepeace.online', 
+            'https://www.pawsitivepeace.online',
+            'https://pawsitive-peace-back-end.onrender.com'
+        ];
         const origin = req.headers.origin;
         
         if (allowedOrigins.includes(origin)) {
