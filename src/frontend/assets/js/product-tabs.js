@@ -9,6 +9,7 @@ class ProductTabs {
         this.tabPanels = [];
         this.activeTab = 'how-to-use';
         this.mobileActiveTab = 'mobile-how-to-use';
+        this.lastWidth = window.innerWidth;
         
         this.init();
     }
@@ -44,20 +45,28 @@ class ProductTabs {
 
         // Add resize listener to handle screen size changes
         window.addEventListener('resize', () => {
-            this.initializeActiveTabs();
+            this.handleResize();
         });
 
         // Set initial active tab based on screen size
         this.initializeActiveTabs();
     }
 
+    handleResize() {
+        const currentWidth = window.innerWidth;
+        const wasMobile = this.lastWidth <= 768;
+        const isMobile = currentWidth <= 768;
+        
+        if (wasMobile !== isMobile) {
+            this.lastWidth = currentWidth;
+            this.initializeActiveTabs();
+        }
+    }
+
     initializeActiveTabs() {
-        // Check if we're on mobile or desktop
         if (window.innerWidth <= 768) {
-            // Mobile: activate mobile tabs
             this.switchTab(this.mobileActiveTab);
         } else {
-            // Desktop: activate desktop tabs
             this.switchTab(this.activeTab);
         }
     }
