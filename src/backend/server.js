@@ -675,7 +675,7 @@ function requireAdminAuth(req, res, next) {
 
 // Admin login route
 app.get('/admin/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/pages/admin-login.html'));
+    res.sendFile(path.join(__dirname, 'admin/admin-login.html'));
 });
 
 // Admin login POST route
@@ -720,7 +720,7 @@ app.get('/', (req, res) => {
 
 // Admin panel route (protected)
 app.get('/admin', requireAdminAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/pages/admin.html'));
+    res.sendFile(path.join(__dirname, 'admin/admin.html'));
 });
 
 // Send tracking email function
