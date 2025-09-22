@@ -1,5 +1,5 @@
 // Service Worker for performance and offline support
-const CACHE_NAME = 'pawsitivepeace-v1';
+const CACHE_NAME = 'pawsitivepeace-v2';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -10,12 +10,25 @@ const urlsToCache = [
     '/refund-policy.html',
     '/cancel.html',
     '/success.html',
-    '/styles.css',
-    '/script.js',
-    '/catalog.js',
-    '/contact.js',
-    '/js/config-loader.js',
-    '/js/cart-manager.js'
+    '/assets/css/styles.css',
+    '/assets/js/script.js',
+    '/assets/js/catalog.js',
+    '/assets/js/contact.js',
+    '/assets/js/config-loader.js',
+    '/assets/js/cart-manager.js',
+    '/assets/js/animations.js',
+    '/assets/js/dom-cache.js',
+    '/assets/js/utilities.js',
+    '/assets/js/app-config.js',
+    '/assets/js/product-tabs.js',
+    '/assets/js/ui-interactions.js',
+    '/assets/js/form-handlers.js',
+    '/assets/js/product-functions.js',
+    '/assets/js/image-gallery.js',
+    '/assets/js/gif-player.js',
+    '/assets/js/memory-manager.js',
+    '/assets/js/cart-operations.js',
+    '/assets/js/quick-add-cart.js'
 ];
 
 self.addEventListener('install', event => {

@@ -157,21 +157,37 @@ function setupProgressRingAnimation(chart, index) {
 
 // Setup intersection observer for progress rings
 function setupProgressRingObserver() {
-    const resultsSection = DOMCache.ui.resultsSection;
-    if (!resultsSection) return;
+    // Try DOMCache first, then fallback to direct query
+    let resultsSection = DOMCache.ui.resultsSection;
+    if (!resultsSection) {
+        resultsSection = document.querySelector('.results-section');
+        console.warn('Results section not found in DOMCache, using direct query');
+    }
     
-    // Use higher threshold for mobile to trigger animation earlier
+    if (!resultsSection) {
+        console.error('Results section not found in DOM');
+        return;
+    }
+    
     const isMobile = window.innerWidth <= 768;
     const threshold = isMobile ? AppConfig.animation.mobileThreshold : AppConfig.animation.desktopThreshold;
+    const rootMargin = isMobile ? '100px' : '50px';
+    
+    console.log(`Setting up progress ring observer - Mobile: ${isMobile}, Threshold: ${threshold}, RootMargin: ${rootMargin}`);
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            console.log(`Results section intersection: ${entry.isIntersecting}, ratio: ${entry.intersectionRatio}`);
             if (entry.isIntersecting) {
+                console.log('Triggering progress ring animation');
                 animateProgressRings();
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold });
+    }, { 
+        threshold,
+        rootMargin
+    });
     
     observer.observe(resultsSection);
 }
@@ -206,12 +222,35 @@ function animateCounter(element, target) {
 // Main progress ring animations initialization
 function initProgressRingAnimations() {
     setupProgressRingObserver();
+    
+    // Mobile fallback: trigger animation after delay if intersection observer fails
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            const resultsSection = document.querySelector('.results-section');
+            if (resultsSection && !resultsSection.classList.contains('animated')) {
+                console.log('Mobile fallback: triggering animation after delay');
+                resultsSection.classList.add('animated');
+                animateProgressRings();
+            }
+        }, 3000);
+    }
 }
 
 // Main progress rings animation function
 function animateProgressRings() {
-    const circleCharts = DOMCache.ui.circleCharts;
-    if (!circleCharts || circleCharts.length === 0) return;
+    // Try DOMCache first, then fallback to direct query
+    let circleCharts = DOMCache.ui.circleCharts;
+    if (!circleCharts || circleCharts.length === 0) {
+        circleCharts = document.querySelectorAll('.circle-chart');
+        console.warn('Circle charts not found in DOMCache, using direct query');
+    }
+    
+    if (!circleCharts || circleCharts.length === 0) {
+        console.error('No circle charts found in DOM');
+        return;
+    }
+    
+    console.log(`Found ${circleCharts.length} circle charts to animate`);
     
     circleCharts.forEach((chart, index) => {
         animateProgressRing(chart, index);
