@@ -23,12 +23,23 @@
     <title>Contact Us - Pawsitive Peace | Get Support</title>
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RERVSD8Z93"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFTD3YS1ZW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-RERVSD8Z93');
+      gtag('config', 'G-HFTD3YS1ZW');
+      
+      // Contact Form Tracking
+      function trackContactForm() {
+        gtag('event', 'contact_form_submit', {
+          'event_category': 'engagement',
+          'event_label': 'contact_form'
+        });
+      }
+      
+      // Make function globally available
+      window.trackContactForm = trackContactForm;
     </script>
     
     <link rel="stylesheet" href="/assets/css/styles.css?v=1.0.1">

@@ -8,6 +8,12 @@ function handleContactForm(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    
+    // Track contact form submission
+    if (typeof window.trackContactForm === 'function') {
+        window.trackContactForm();
+    }
+    
     // Simulate form submission
     showNotification('Message sent successfully!', 'success');
 
@@ -208,9 +214,35 @@ async function processPayment(firstName, lastName, email) {
 
         const data = await response.json();
         if (data && data.url) {
+            // Track purchase initiation
+            if (typeof window.trackPurchase === 'function') {
+                const transactionId = data.sessionId || `checkout_${Date.now()}`;
+                const items = cart.map(item => ({
+                    item_id: item.id,
+                    item_name: item.name,
+                    category: 'Dog Toys',
+                    quantity: item.quantity,
+                    price: item.price
+                }));
+                window.trackPurchase(transactionId, total, items);
+            }
+            
             showNotification('Redirecting to secure payment...', 'success');
             window.location.href = data.url;
         } else if (data && data.sessionId) {
+            // Track purchase initiation
+            if (typeof window.trackPurchase === 'function') {
+                const transactionId = data.sessionId;
+                const items = cart.map(item => ({
+                    item_id: item.id,
+                    item_name: item.name,
+                    category: 'Dog Toys',
+                    quantity: item.quantity,
+                    price: item.price
+                }));
+                window.trackPurchase(transactionId, total, items);
+            }
+            
             // Back-compat if server still returns only sessionId
             showNotification('Redirecting to secure payment...', 'success');
             window.location.href = `https://pawsitive-peace-back-end.onrender.com/checkout-session/${data.sessionId}`;

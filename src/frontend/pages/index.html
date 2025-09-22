@@ -25,12 +25,48 @@
     <title>Interactive Dog Toy - Dishwasher Safe Freezable Pupsicle | Mental Stimulation Puzzle Toy</title>
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RERVSD8Z93"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFTD3YS1ZW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-RERVSD8Z93');
+      gtag('config', 'G-HFTD3YS1ZW');
+      
+      // Enhanced E-commerce Tracking
+      function trackAddToCart(productName, productId, price, quantity = 1) {
+        gtag('event', 'add_to_cart', {
+          'currency': 'GBP',
+          'value': price,
+          'items': [{
+            'item_id': productId,
+            'item_name': productName,
+            'category': 'Dog Toys',
+            'quantity': quantity,
+            'price': price
+          }]
+        });
+      }
+      
+      function trackPurchase(transactionId, value, items) {
+        gtag('event', 'purchase', {
+          'transaction_id': transactionId,
+          'value': value,
+          'currency': 'GBP',
+          'items': items
+        });
+      }
+      
+      function trackContactForm() {
+        gtag('event', 'contact_form_submit', {
+          'event_category': 'engagement',
+          'event_label': 'contact_form'
+        });
+      }
+      
+      // Make functions globally available
+      window.trackAddToCart = trackAddToCart;
+      window.trackPurchase = trackPurchase;
+      window.trackContactForm = trackContactForm;
     </script>
     
     <link rel="stylesheet" href="/assets/css/styles.css?v=1.0.1">

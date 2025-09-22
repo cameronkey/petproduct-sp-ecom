@@ -31,17 +31,8 @@ function addToCart() {
     window.CartManager.addItem(product);
     
     // Track add to cart event
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'add_to_cart', {
-            items: [{
-                item_id: product.id,
-                item_name: product.name,
-                price: product.price,
-                currency: 'GBP'
-            }],
-            value: product.price,
-            currency: 'GBP'
-        });
+    if (typeof window.trackAddToCart === 'function') {
+        window.trackAddToCart(product.name, product.id, product.price, product.quantity);
     }
     
     // Get product name for notification
