@@ -545,7 +545,7 @@ small, .small-text {
     .banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRight 45s linear infinite; /* Same speed as desktop */
+        animation: scrollRight 10s linear infinite; 
     }
 }
 
@@ -557,7 +557,7 @@ small, .small-text {
     .banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRight 45s linear infinite; /* Same speed as desktop */
+        animation: scrollRight 8s linear infinite; 
     }
 }
 
@@ -3658,12 +3658,12 @@ small, .small-text {
     }
     
     .featured {
-        /* padding: var(--space-12) 0; */
         padding: 0;
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
         box-sizing: border-box;
+        margin-top: 0;
     }
     
     .contact-content {
@@ -3969,7 +3969,7 @@ small, .small-text {
     .sale-ends-banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRightSaleEnds 45s linear infinite;
+        animation: scrollRightSaleEnds 10s linear infinite;
         width: 200%;
     }
 }
@@ -3983,7 +3983,7 @@ small, .small-text {
     .bottom-banner-text {
         font-size: var(--text-xs);
         padding-right: 1.5rem;
-        animation: scrollRightBottom 45s linear infinite; /* Same speed as desktop */
+        animation: scrollRightBottom 10s linear infinite;
     }
 }
 
@@ -3995,7 +3995,7 @@ small, .small-text {
     .sale-ends-banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRightSaleEnds 45s linear infinite;
+        animation: scrollRightSaleEnds 8s linear infinite;
         width: 200%;
     }
     
@@ -4006,7 +4006,7 @@ small, .small-text {
     .bottom-banner-text {
         font-size: var(--text-xs);
         padding-right: 1rem;
-        animation: scrollRightBottom 45s linear infinite; /* Same speed as desktop */
+        animation: scrollRightBottom 8s linear infinite;
     }
 }
 
