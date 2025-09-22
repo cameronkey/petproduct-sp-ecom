@@ -48,6 +48,9 @@ services:
         value: production
     routes:
       - type: proxy
+        source: /admin
+        destination: https://pawsitive-peace-back-end.onrender.com
+      - type: proxy
         source: /admin/*
         destination: https://pawsitive-peace-back-end.onrender.com
       - type: proxy
