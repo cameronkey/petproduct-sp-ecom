@@ -10,8 +10,12 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 10000
+        value: 3000
+      - key: BASE_URL
+        value: https://www.pawsitivepeace.online
       - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false
@@ -19,12 +23,16 @@ services:
         sync: false
       - key: EMAIL_PASS
         sync: false
+      - key: EMAILJS_PUBLIC_KEY
+        sync: false
       - key: JWT_SECRET
         sync: false
       - key: SESSION_SECRET
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+      - key: ENABLE_TEST_ENDPOINTS
+        value: false
     healthCheckPath: /health
     autoDeploy: true
 
