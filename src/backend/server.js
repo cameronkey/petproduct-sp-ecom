@@ -104,8 +104,6 @@ if (process.env.NODE_ENV === 'production') {
         next();
     });
     
-    // Serve static files before API routes to prevent interference
-    app.use(express.static(path.join(__dirname, '../frontend')));
 } else {
     // Development mode - also serve static files
     app.use(express.static(path.join(__dirname, '../frontend')));
@@ -1053,7 +1051,17 @@ app.get('/api/status', (req, res) => {
     });
 });
 
-
+// Serve static files AFTER all API and admin routes to prevent interference
+// This ensures admin authentication middleware runs before static file serving
+app.use(express.static(path.join(__dirname, '../frontend'), {
+    index: false,
+    setHeaders: (res, path) => {
+        // Block direct access to admin files - they should go through authentication
+        if (path.includes('/admin.html') || path.includes('/admin-login.html')) {
+            res.status(404).end();
+        }
+    }
+}));
 
 // Start server only if not in test mode
 let server;
