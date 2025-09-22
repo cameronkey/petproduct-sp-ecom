@@ -165,6 +165,11 @@ const AppConfig = {
         currency: 'GBP'
     },
     
+    // API Configuration
+    api: {
+        backendUrl: 'https://pawsitive-peace-back-end.onrender.com'
+    },
+    
     // Memory Management
     memory: {
         cleanupEvents: ['beforeunload', 'visibilitychange']

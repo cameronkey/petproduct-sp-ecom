@@ -47,33 +47,6 @@ services:
       - key: NODE_ENV
         value: production
     routes:
-      - type: proxy
-        source: /admin
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /admin/*
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /api/*
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /health
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /csrf-token
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /create-checkout-session
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /webhook/*
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /success
-        destination: https://pawsitive-peace-back-end.onrender.com
-      - type: proxy
-        source: /cancel
-        destination: https://pawsitive-peace-back-end.onrender.com
       - type: rewrite
         source: /*
         destination: /index.html
