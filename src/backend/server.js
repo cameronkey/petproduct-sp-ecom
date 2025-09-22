@@ -684,15 +684,19 @@ app.post('/admin/login', express.json(), (req, res) => {
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminPassword) {
+        console.error('❌ ADMIN_PASSWORD environment variable not set');
         return res.status(500).json({ 
-            error: 'Admin password not configured' 
+            error: 'Admin authentication not configured. Please contact administrator.',
+            code: 'ADMIN_CONFIG_MISSING'
         });
     }
 
     if (password === adminPassword) {
         req.session.adminAuthenticated = true;
+        console.log('✅ Admin login successful');
         res.json({ success: true, message: 'Login successful' });
     } else {
+        console.log('❌ Admin login failed - invalid password');
         res.status(401).json({ 
             error: 'Invalid password' 
         });
