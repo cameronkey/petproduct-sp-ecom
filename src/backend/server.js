@@ -697,7 +697,7 @@ app.post('/admin/login', express.json(), (req, res) => {
     if (password === adminPassword) {
         req.session.adminAuthenticated = true;
         console.log('✅ Admin login successful');
-        res.redirect('/admin');
+        res.json({ success: true, message: 'Login successful' });
     } else {
         console.log('❌ Admin login failed - invalid password');
         res.status(401).json({ 
