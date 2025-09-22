@@ -4490,7 +4490,7 @@ small, .small-text {
 }
 
 .progress-ring-circle {
-    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: stroke-dashoffset 1.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .progress-ring-fill {
@@ -4512,7 +4512,7 @@ small, .small-text {
 }
 
 .circle-chart.animate .chart-percentage {
-    animation: countUp 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: countUp 1.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .result-description {

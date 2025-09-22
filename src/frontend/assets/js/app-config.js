@@ -81,7 +81,7 @@ const AppConfig = {
         
         // Progress ring animation
         progressRingFPS: 60,
-        progressRingDuration: 1500
+        progressRingDuration: 1650
     },
     
     // UI Text Content
