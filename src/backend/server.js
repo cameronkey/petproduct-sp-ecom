@@ -379,6 +379,9 @@ app.post('/create-checkout-session', async (req, res) => {
             success_url: `${process.env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.BASE_URL}/cancel`,
             customer_email: customerEmail,
+            automatic_tax: {
+                enabled: true,
+            },
             metadata: {
                 customerName: customerName,
                 customerEmail: customerEmail,
