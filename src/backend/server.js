@@ -31,22 +31,7 @@ if (process.env.SENTRY_DSN) {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS configuration (always needed)
-app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? [
-            'https://pawsitivepeace.online', 
-            'https://www.pawsitivepeace.online', 
-            'https://pawsitive-peace-back-end.onrender.com'
-          ]
-        : true,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
-    optionsSuccessStatus: 200
-}));
-
-// Session middleware for admin authentication (always needed)
+// Session middleware for admin authentication (must be first)
 app.use(session({
     secret: process.env.SESSION_SECRET || 'pawsitive-peace-admin-secret-key-change-in-production',
     resave: false,
@@ -59,6 +44,21 @@ app.use(session({
         domain: process.env.NODE_ENV === 'production' ? 'pawsitive-peace-back-end.onrender.com' : 'localhost'
     },
     name: 'pawsitive-peace-admin-session' // Custom session name
+}));
+
+// CORS configuration (after session middleware)
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' 
+        ? [
+            'https://pawsitivepeace.online', 
+            'https://www.pawsitivepeace.online', 
+            'https://pawsitive-peace-back-end.onrender.com'
+          ]
+        : true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
+    optionsSuccessStatus: 200
 }));
 
 // JSON parsing middleware (always needed)
