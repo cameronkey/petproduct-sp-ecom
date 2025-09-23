@@ -99,7 +99,13 @@ if (process.env.NODE_ENV === 'production') {
         }
     });
 
-    app.use(limiter);
+    // Conditional rate limiting - exclude admin routes
+    app.use((req, res, next) => {
+        if (req.path.startsWith('/admin')) {
+            return next();
+        }
+        return limiter(req, res, next);
+    });
 
     // Security headers
     app.use((req, res, next) => {
