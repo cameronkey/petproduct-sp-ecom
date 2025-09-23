@@ -56,7 +56,7 @@ app.use(session({
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         sameSite: 'lax', // Allow cross-origin requests
-        domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined
+        domain: process.env.NODE_ENV === 'production' ? 'pawsitive-peace-back-end.onrender.com' : 'localhost'
     },
     name: 'pawsitive-peace-admin-session' // Custom session name
 }));

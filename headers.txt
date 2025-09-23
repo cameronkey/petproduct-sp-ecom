@@ -1,0 +1,21 @@
+HTTP/2 200 
+date: Tue, 23 Sep 2025 11:48:40 GMT
+content-type: application/json; charset=utf-8
+access-control-allow-credentials: true
+access-control-allow-headers: Content-Type, Authorization, X-CSRF-Token
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+etag: W/"2d-tdQEKjo1FqK2o+AjP2Hiq4ZMp2w"
+rndr-id: 4da89428-be79-4bd6
+strict-transport-security: max-age=31536000; includeSubDomains
+vary: Origin
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-powered-by: Express
+x-render-origin-server: Render
+x-xss-protection: 1; mode=block
+cf-cache-status: DYNAMIC
+server: cloudflare
+cf-ray: 9839d077be7088bb-LHR
+alt-svc: h3=":443"; ma=86400
+
