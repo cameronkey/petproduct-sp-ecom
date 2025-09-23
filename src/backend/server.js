@@ -54,8 +54,11 @@ app.use(session({
     cookie: {
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
-    }
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        sameSite: 'lax', // Allow cross-origin requests
+        domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined
+    },
+    name: 'pawsitive-peace-admin-session' // Custom session name
 }));
 
 // JSON parsing middleware (always needed)
@@ -700,7 +703,18 @@ app.post('/admin/login', express.json(), (req, res) => {
     if (password === adminPassword) {
         req.session.adminAuthenticated = true;
         console.log('✅ Admin login successful');
-        res.json({ success: true, message: 'Login successful' });
+        console.log('🔍 Session ID:', req.sessionID);
+        console.log('🔍 Session data:', req.session);
+        
+        // Ensure session is saved
+        req.session.save((err) => {
+            if (err) {
+                console.error('❌ Session save error:', err);
+                return res.status(500).json({ error: 'Session save failed' });
+            }
+            console.log('✅ Session saved successfully');
+            res.json({ success: true, message: 'Login successful' });
+        });
     } else {
         console.log('❌ Admin login failed - invalid password');
         res.status(401).json({ 
