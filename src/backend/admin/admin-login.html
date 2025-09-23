@@ -220,7 +220,10 @@
 
                 if (response.ok && result.success) {
                     // Redirect to admin panel
-                    window.location.href = '/admin';
+                    // Add a small delay to ensure session is fully established
+                    setTimeout(() => {
+                        window.location.href = '/admin';
+                    }, 100);
                 } else {
                     statusMessage.innerHTML = `
                         <div class="status-message status-error">
