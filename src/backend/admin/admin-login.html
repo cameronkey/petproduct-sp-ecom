@@ -208,13 +208,14 @@
             statusMessage.innerHTML = '';
 
             try {
-                const response = await fetch('https://pawsitive-peace-back-end.onrender.com/admin/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ password })
-                });
+                    const response = await fetch('https://pawsitive-peace-back-end.onrender.com/admin/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: 'include', // Include cookies in request
+                        body: JSON.stringify({ password })
+                    });
 
                 const result = await response.json();
 

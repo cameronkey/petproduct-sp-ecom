@@ -31,6 +31,9 @@ if (process.env.SENTRY_DSN) {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust Render's proxy for secure cookies
+app.set('trust proxy', 1);
+
 // Session middleware for admin authentication (must be first)
 app.use(session({
     secret: process.env.SESSION_SECRET || 'pawsitive-peace-admin-secret-key-change-in-production',
